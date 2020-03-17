@@ -1,0 +1,25 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "parse2Js": "ts-node ./src/utils/MD2Js.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/koa": "^2.11.2",
+    "@types/mysql": "^2.15.9",
+    "axios": "^0.19.2",
+    "cross-env": "^7.0.2",
+    "koa": "^2.11.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-jwt": "^3.6.0",
+    "koa-router": "^8.0.8",
+    "koa2-cors": "^2.0.6",
+    "mysql": "^2.18.1"
+  }
+}

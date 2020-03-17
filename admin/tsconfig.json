@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "removeComments": true,
+    "allowJs": true,
+    "jsx": "react",
+    "sourceMap": true,
+    "baseUrl": ".",
+    // 引入json，moduleResolution一定要设置为Node
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "outDir": "output",
+    "rootDir": ".",
+    "typeRoots": ["node_modules/@types"],
+    "noImplicitReturns": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+  },
+  "exclude": ["node_modules"]
+}

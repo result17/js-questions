@@ -1,0 +1,20 @@
+.login-wrapper {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(60deg, #2f54eb, #b5f5ec);
+}
+.form-wrapper {
+  padding: 20px 40px;
+  border-radius: 8px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+}
+.form-title {
+  text-align: center;
+}
+.btn-wrapper {
+  margin-bottom: 0;
+}
