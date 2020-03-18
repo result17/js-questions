@@ -100,11 +100,4 @@ class DbOperate extends DbConn {
   }
 }
 
-// let d = new DbOperate(init_mysql_config)
-// d.connect().useDB().dropDB('manager').createTable(manager_table).end()
-// d.connect().useDB().showTables().dropTable('manager').createTable(manager_table).showTables().end()
-
-// d.connect().useDB().createTable(manager_table).end()
-// // d.connect().useDB().createTable(user_info_table).createTable(user_password_table).end()
-
 export { DbOperate }
