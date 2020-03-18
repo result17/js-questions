@@ -7,11 +7,11 @@ class DbOperate extends DbConn {
   constructor(config: Mysql_config) {
     super(config)
   }
-  connect(): DbOperate {
-    super.connect()
+  async connect(): Promise<DbOperate> {
+    await super.connect()
     return this
   }
-  dropDB(DbName: string = this.db): DbOperate {
+  async dropDB(DbName: string = this.db): Promise<DbOperate> {
     DbName = DbName ? DbName : this.db
     try {
       if (this.connection && this.curDb !== DbName) {
@@ -30,11 +30,11 @@ class DbOperate extends DbConn {
     }
     return this
   }
-  createDB(DbName: string = this.db): DbOperate {
+  async createDB(DbName: string = this.db): Promise<DbOperate> {
     DbName = DbName ? DbName : this.db
     try {
       if (this.connection) {
-        this.connection.query(`CREATE DATABASE ${DbName}`, err => {
+        await this.connection.query(`CREATE DATABASE ${DbName}`, err => {
           if (err) throw err
           console.log(`${DbName} database created`)
         })
@@ -44,13 +44,14 @@ class DbOperate extends DbConn {
     }
     return this
   }
-  useDB(DbName: string = this.db): DbOperate {
+  async useDB(DbName: string = this.db): Promise<DbOperate> {
     DbName = DbName ? DbName : this.db
     try {
       if (this.connection) {
-        this.connection.query(`USE ${DbName};`, err => {
-          if (err) throw err
+        await this.connection.promise().query(`USE ${DbName};`).then(() => {
           console.log(`Database changed! Now is ${DbName}.`)
+        }).catch(err => {
+          throw err
         })
       }
       this.curDb = DbName
@@ -59,7 +60,7 @@ class DbOperate extends DbConn {
     }
     return this
   }
-  createTable(command: string): DbOperate {
+  async createTable(command: string): Promise<DbOperate> {
     try {
       if (this.connection && this.curDb) {
         this.connection.query(command, err => {
@@ -72,7 +73,7 @@ class DbOperate extends DbConn {
     }
     return this
   }
-  showTables(): DbOperate {
+  async showTables(): Promise<DbOperate> {
     try {
       if (this.connection && this.curDb) {
         this.connection.query('SHOW TABLES;', (err, result) => {
@@ -85,10 +86,10 @@ class DbOperate extends DbConn {
     }
     return this
   }
-  dropTable(tableName: string): DbOperate {
+  async dropTable(tableName: string): Promise<DbOperate> {
     try {
       if (this.connection && this.curDb) {
-        this.connection.query(`DROP TABLE ${tableName};`, err => {
+        await this.connection.query(`DROP TABLE ${tableName};`, err => {
           if (err) throw err
           console.log(`${tableName} dropped!`)
         })

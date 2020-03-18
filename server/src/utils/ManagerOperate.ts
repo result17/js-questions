@@ -16,28 +16,28 @@ class ManagerOperate extends DbOperate {
   constructor(config: Mysql_config) {
     super(config)
   }
-  connect(): ManagerOperate {
-    super.connect()
+  async connect(): Promise<ManagerOperate> {
+    await super.connect()
     return this
   }
-  useDB(): ManagerOperate {
-    super.useDB()
+  async useDB(DbName: string = this.db): Promise<ManagerOperate> {
+    await super.useDB()
     return this
   }
-  createTable(tableName: string): ManagerOperate {
-    super.createTable(tableName)
+  async createTable(tableName: string): Promise<ManagerOperate> {
+    await super.createTable(tableName)
     return this
   }
-  addManager(manager: Manager): ManagerOperate {
+  async addManager(manager: Manager): Promise<ManagerOperate> {
     try {
       if (this.connection && this.curDb === this.db) {
         // 插入到manager_info
-        this.connection.query(`INSERT INTO ?? VALUES ( ?, ?, ?);`, [`${this.tableName}_info`, null, manager.name,  manager.github], err => {
+        await this.connection.query(`INSERT INTO ?? VALUES ( ?, ?, ?);`, [`${this.tableName}_info`, null, manager.name,  manager.github], err => {
           if (err) throw err
           console.log(`${this.tableName} inserted, add ${manager.name} in manager table!`)
         })
         // 插入到manager_password
-        this.connection.query(`INSERT INTO ?? VALUES ( ?, ?, ?)`, [`${this.tableName}_password`, null, 'agagagda556', '6897sg'], err => {
+        await this.connection.query(`INSERT INTO ?? VALUES ( ?, ?, ?)`, [`${this.tableName}_password`, null, 'agagagda556', '6897sg'], err => {
           if (err) throw err
           console.log(`${this.tableName} pwd inserted, add ${manager.name} pwd in manager_pwd table!`)
         })
@@ -47,10 +47,10 @@ class ManagerOperate extends DbOperate {
     }
     return this
   }
-  rmManager(id: number): ManagerOperate {
+  async rmManager(id: number): Promise<ManagerOperate> {
     try {
       if (this.connection && this.curDb === this.db) {
-        this.connection.query(`DELETE FROM ?? WHERE id = ?`, [this.tableName, id], err => {
+        await this.connection.query(`DELETE FROM ?? WHERE id = ?`, [this.tableName, id], err => {
           if (err) throw err
           console.log(`id: ${id} manager deleted!`)
         })
@@ -60,13 +60,14 @@ class ManagerOperate extends DbOperate {
     }
     return this
   }
-  selInfoByName(name: string, o: DataContainer): ManagerOperate {
+  async selInfoByName(name: string, o: DataContainer): Promise<ManagerOperate> {
     try {
       if (this.connection && this.curDb === this.db) {
-        o.data = this.connection.query(`SELECT id FROM ?? WHERE ${this.tableName}name = ?`, [`${this.tableName}_info`, name], err => {
-          if (err) throw err
-          console.log(`name: ${name} manager found, data is in the DataContainer.`)
-        })[0]
+        await this.connection.promise().query(`SELECT id FROM ?? WHERE ${this.tableName}name = ?`, [`${this.tableName}_info`, name]).then(([rows, fields]) => {
+          o.data = rows[0]
+        }).catch(err => {
+          throw err
+        })
       }
     } catch(e) {
       console.error(e.message)
@@ -84,9 +85,10 @@ const root: Manager = {
 const container: DataContainer = {
   data: null
 }
-
-const db = new ManagerOperate(init_mysql_config)
-db.connect().useDB().createTable(manager_password_table).selInfoByName('root', container).end()
-console.log(container)
+const main = async () => {
+  const db = new ManagerOperate(init_mysql_config)
+  db.connect().then(db => db.useDB()).then(db => db.selInfoByName('root', container)).then(db => db.end())
+}
+main()
 
 export { ManagerOperate, Manager }

@@ -1,4 +1,4 @@
-import * as mysql from 'mysql'
+import * as mysql from 'mysql2'
 import { Mysql_config } from '../config/mysql_config'
 
 abstract class DbConn {
@@ -8,16 +8,17 @@ abstract class DbConn {
   protected user: string
   protected password: string
   public db: string
-  protected connection: mysql.Connection
+  // mysql2没有typescript支持
+  protected connection: any
   constructor(config: Mysql_config) {
     this.port = config.port
     this.charset = config.charset as string
     this.db = config.database as string
     [this.host ,this.user, this.password] = [config.host, config.user, config.password]
   }
-  connect(): DbConn{
+  async connect(): Promise<DbConn>{
     try {
-      this.connection = mysql.createConnection({
+      this.connection = await mysql.createConnection({
         host: this.host,
         port: this.port,
         user: this.user,
@@ -32,9 +33,9 @@ abstract class DbConn {
     this.password = ''
     return this
   }
-  end(): void {
+  async end(): Promise<void> {
     if (this.connection) {
-      this.connection.end(err => {
+      await this.connection.end(err => {
         if (err) return console.log(`error: ${err.message}`)
         console.log('Close the database connection.')
       })
