@@ -3,16 +3,17 @@ class TokenOperations {
   constructor() {
     this.ls = localStorage
   }
-  setToken(token: string): TokenOperations {
+  setToken(token: string): void {
     this.ls.setItem('token', token)
-    return this
   }
-  delToken(): TokenOperations {
+  delToken(): void {
     this.ls.removeItem('token')
-    return this
   }
   hasToken(): Boolean {
     return !!this.ls.getItem('token')
+  }
+  getToken(): string {
+    return this.ls.getItem('token')
   }
 }
 
