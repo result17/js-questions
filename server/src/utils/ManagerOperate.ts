@@ -1,10 +1,11 @@
 import { DbOperate } from './DbOperate'
-import { Mysql_config, init_mysql_config, manager_password_table } from '../config/mysql_config'
+import { Mysql_config, init_mysql_config } from '../config/mysql_config'
 
 interface Manager {
   name: string,
-  password: string,
-  github: string
+  mix: string,
+  github: string,
+  salt: string,
 }
 
 interface DataContainer {
@@ -32,14 +33,16 @@ class ManagerOperate extends DbOperate {
     try {
       if (this.connection && this.curDb === this.db) {
         // 插入到manager_info
-        await this.connection.query(`INSERT INTO ?? VALUES ( ?, ?, ?);`, [`${this.tableName}_info`, null, manager.name,  manager.github], err => {
-          if (err) throw err
+        await this.connection.promise().query(`INSERT INTO ?? VALUES ( ?, ?, ?);`, [`${this.tableName}_info`, null, manager.name,  manager.github]).then(() => {
           console.log(`${this.tableName} inserted, add ${manager.name} in manager table!`)
+        }).catch(err => {
+          throw err
         })
         // 插入到manager_password
-        await this.connection.query(`INSERT INTO ?? VALUES ( ?, ?, ?)`, [`${this.tableName}_password`, null, 'agagagda556', '6897sg'], err => {
-          if (err) throw err
-          console.log(`${this.tableName} pwd inserted, add ${manager.name} pwd in manager_pwd table!`)
+        await this.connection.promise().query(`INSERT INTO ?? VALUES ( ?, ?, ?)`, [`${this.tableName}_mix`, null, manager.mix, manager.salt]).then(() => {
+          console.log(`${this.tableName} mix inserted, add ${manager.name}_mix in manager_mix table!`)
+        }).catch(err => {
+          throw err
         })
       }
     } catch(e) {
@@ -65,6 +68,7 @@ class ManagerOperate extends DbOperate {
       if (this.connection && this.curDb === this.db) {
         await this.connection.promise().query(`SELECT id FROM ?? WHERE ${this.tableName}name = ?`, [`${this.tableName}_info`, name]).then(([rows, fields]) => {
           o.data = rows[0]
+          console.log(`name: ${name} manager found, data is in the DataContainer.`)
         }).catch(err => {
           throw err
         })
@@ -78,16 +82,19 @@ class ManagerOperate extends DbOperate {
 
 const root: Manager = {
   name: 'root',
-  password: 'C4(i,&V%I-9YBvcm',
-  github: 'https://github.com/result17'
+  // pwd: '20190319',
+  mix: 'Olp5Ia5KUg+5YioOaPml0g==',
+  github: 'https://github.com/result17',
+  salt: 'CBBYJGzfBvEeHI+/vBPcKA=='
 }
 
 const container: DataContainer = {
   data: null
 }
 const main = async () => {
-  const db = new ManagerOperate(init_mysql_config)
-  db.connect().then(db => db.useDB()).then(db => db.selInfoByName('root', container)).then(db => db.end())
+  const database = new ManagerOperate(init_mysql_config)
+  await database.connect().then(db => db.useDB()).then(db => db.addManager(root)).then(db => db.end())
+  console.log('finish')
 }
 main()
 
