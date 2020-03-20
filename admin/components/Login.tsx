@@ -1,11 +1,22 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import { Form, Button, Input, Divider } from 'antd'
-import { Link } from 'react-router-dom'
+import { Link, RouteComponentProps } from 'react-router-dom'
 import { UserOutlined } from '@ant-design/icons'
+import { AxiosRequestConfig, AxiosResponse } from 'axios'
+import { useApi } from '../utils/useServerApi'
+import { TokenOperations } from '../utils/TokenOperations'
 
 import'./Login.css'
 
-const Login: FC = () => {
+interface RouteProps {
+  route: RouteComponentProps,
+  operator: TokenOperations,
+}
+
+const Login: FC<RouteComponentProps> = (props: RouteComponentProps) => {
+//  每次转到登录页面时清除token
+  const operator = new TokenOperations
+  operator.delToken()
 
   return (
     <div className="login-wrapper">
@@ -14,21 +25,44 @@ const Login: FC = () => {
           <h3 className="form-title">js-questions 管理</h3>
           <Divider></Divider>
         </div>
-         <LoginFrom></LoginFrom> 
+         <LoginFrom route={props} operator={operator}></LoginFrom> 
       </div>
     </div>
   )
 }
 
 // Input组件focus状态下按enter机会提交表单，不用额外监听键盘事件
-const LoginFrom: FC = () => {
+const LoginFrom: FC<RouteProps> = (props: RouteProps) => {
   // 经 Form.useForm() 创建的 form 控制实例，不提供时会自动创建
   const [form] = Form.useForm()
+  
+  const initConfig: AxiosRequestConfig = { url: '', 
+                                           params: {}
+                                         }
 
-  const handleSumbit = (val) => {
+  const [loginReqConfig, SetLoginConfig] = useState(initConfig)
+  const loginRes: AxiosResponse<any> = useApi(loginReqConfig)
+
+  const handleLoginRes = (res: AxiosResponse<any>): void => {
+    if (res) {
+      // 将token存入localStorage
+      // 
+      props.route.history.push('/regist')
+    }
+  }
+
+  handleLoginRes(loginRes)
+
+  const handleSumbit = () => {
     form.validateFields().then(values => {
-      // Do something with value
-      console.log(values)
+      const { username, pwd } = values
+      SetLoginConfig({
+        url: '/login',
+        params: {
+          username,
+          pwd
+        }
+      })
     }).catch(err => {
       console.log(err)
     })

@@ -4,12 +4,12 @@ https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/401
 */
 import { Middleware } from 'koa'
 
-const UNAUTHORIZEDCODE: number = 401
+import { HttpCode } from '../utils/Types'
 
 const unauthHandler: Middleware = async (ctx, next) => {
   return await next().catch(err => {
-    if (UNAUTHORIZEDCODE === err.Status) {
-      ctx.status = UNAUTHORIZEDCODE
+    if (HttpCode.UNAUTHORIZED === err.Status) {
+      ctx.response.status = HttpCode.UNAUTHORIZED
       ctx.response.body = {
         code: 401,
         data: {

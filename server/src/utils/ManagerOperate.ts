@@ -1,5 +1,5 @@
 import { DbOperate } from './DbOperate'
-import { Mysql_config, init_mysql_config } from '../config/mysql_config'
+import { Mysql_config, init_mysql_config, manager_info_table } from '../config/mysql_config'
 
 interface Manager {
   name: string,
@@ -32,8 +32,8 @@ class ManagerOperate extends DbOperate {
   async addManager(manager: Manager): Promise<ManagerOperate> {
     try {
       if (this.connection && this.curDb === this.db) {
-        // 插入到manager_info
-        await this.connection.promise().query(`INSERT INTO ?? VALUES ( ?, ?, ?);`, [`${this.tableName}_info`, null, manager.name,  manager.github]).then(() => {
+        // 插入到manager_info(现在只开放type=1的用户进行注册)
+        await this.connection.promise().query(`INSERT INTO ?? VALUES ( ?, ?, ?, ?, ?);`, [`${this.tableName}_info`, null, manager.name,  1,  'NOW()', manager.github]).then(() => {
           console.log(`${this.tableName} inserted, add ${manager.name} in manager table!`)
         }).catch(err => {
           throw err
@@ -78,24 +78,35 @@ class ManagerOperate extends DbOperate {
     }
     return this
   }
+  async selMixandSaltByID(id: number, o: DataContainer): Promise<ManagerOperate> {
+    if (this.connection && this.curDb === this.db) {
+      await this.connection.promise().query(`SELECT mix, salt FROM ?? WHERE ${this.tableName}_id = ?`, [`${this.tableName}_mix`, id]).then(([rows, fields]) => {
+        o.data = rows[0]
+        console.log(`id: ${id} manager found, data is in the DataContainer.`)
+      }).catch(err => {
+        console.error(err.message)
+      })
+    }
+    return this
+  }
 }
 
-const root: Manager = {
-  name: 'root',
-  // pwd: '20190319',
-  mix: 'Olp5Ia5KUg+5YioOaPml0g==',
-  github: 'https://github.com/result17',
-  salt: 'CBBYJGzfBvEeHI+/vBPcKA=='
-}
+// const root: Manager = {
+//   name: 'root',
+//   // pwd: '20190319',
+//   mix: 'Olp5Ia5KUg+5YioOaPml0g==',
+//   github: 'https://github.com/result17',
+//   salt: 'CBBYJGzfBvEeHI+/vBPcKA=='
+// }
 
-const container: DataContainer = {
-  data: null
-}
-const main = async () => {
-  const database = new ManagerOperate(init_mysql_config)
-  await database.connect().then(db => db.useDB()).then(db => db.addManager(root)).then(db => db.end())
-  console.log('finish')
-}
-main()
+// const container: DataContainer = {
+//   data: null
+// }
+// const main = async () => {
+//   const database = new ManagerOperate(init_mysql_config)
+//   await database.connect().then(db => db.useDB()).then(db => db.createTable(manager_info_table)).then(db => db.end())
+//   console.log('finish')
+// }
+// main()
 
-export { ManagerOperate, Manager }
+export { ManagerOperate, Manager, DataContainer }

@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig, AxiosInstance, AxiosResponse } from 'axios'
 import { TokenOperations } from './TokenOperations'
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback, useEffect, useRef } from 'react'
 
 const requestConfig: AxiosRequestConfig = {
   baseURL: '/api',
@@ -15,7 +15,8 @@ const requestConfig: AxiosRequestConfig = {
 const instance: AxiosInstance = axios.create(requestConfig)
 const tokenOperate = new TokenOperations()
 
-instance.interceptors.response.use(config => {
+// 请求添加认证token
+instance.interceptors.request.use(config => {
   if (tokenOperate.hasToken()) {
     const token = tokenOperate.getToken()
     config.headers.common['Authorization'] = token
@@ -71,7 +72,6 @@ function useServerApi(config: AxiosRequestConfig): ApiResponse {
   }, [config])
 
   useEffect(() => {
-    console.log("call fetchData")
     fetchData()
   }, [fetchData])
 
@@ -82,4 +82,28 @@ function useServerApi(config: AxiosRequestConfig): ApiResponse {
   }
 }
 
-export { ApiResponse, useServerApi}
+function useApi(config: AxiosRequestConfig): AxiosResponse {
+  const isMount = useRef(false)
+  const [data, setData] = useState(null)
+   
+  const loginReq = useCallback(async () => {
+    try {
+      const response: AxiosResponse = await instance(config)
+      setData({...response})
+    } catch (e) {
+      console.error(e)
+    }
+  }, [config])
+  
+  useEffect(() => {
+    if (!isMount.current) {
+      isMount.current = true
+      return
+    }
+    loginReq()
+  }, [loginReq])
+
+  return data
+}
+
+export { ApiResponse, useServerApi, useApi }

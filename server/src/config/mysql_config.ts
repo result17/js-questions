@@ -33,13 +33,15 @@ const user_password_table = `CREATE TABLE IF NOT EXISTS user_password(
 const manager_info_table = `CREATE TABLE IF NOT EXISTS manager_info(
                               id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
                               managername VARCHAR(50) NOT NULL,
+                              type int NOT NULL,
+                              create_at datetime NOT NULL, 
                               github VARCHAR(255) NOT NULL
                            );`
 
-const manager_password_table = `CREATE TABLE IF NOT EXISTS manager_password(
+const manager_mix_table = `CREATE TABLE IF NOT EXISTS manager_mix(
                                  manager_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-                                 password VARCHAR(255) NOT NULL,
+                                 mix VARCHAR(255) NOT NULL,
                                  salt VARCHAR(255) NOT NULL
                                );`
 
-export { Mysql_config, init_mysql_config, user_info_table, user_password_table, manager_info_table, manager_password_table }
+export { Mysql_config, init_mysql_config, user_info_table, user_password_table, manager_info_table, manager_mix_table }

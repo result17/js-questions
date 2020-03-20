@@ -23,7 +23,7 @@ module.exports = merge(common, {
     historyApiFallback: true,
     proxy: {
       '/api': {
-        target: 'http://localhost:7766/',
+        target: 'http://localhost:7755/',
         pathRewrite: {'^/api': ''},
         secure: false,
         // keep host header
