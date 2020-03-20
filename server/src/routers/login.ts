@@ -80,13 +80,3 @@ loginRouter.post('/login', async (ctx, next) => {
 })
 
 export { loginRouter }
-
-class A {
-  constructor(n) {
-    this.r = n
-  }
-}
-
-class B extends A(n) {
-  
-}
