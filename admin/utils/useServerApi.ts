@@ -84,12 +84,11 @@ function useServerApi(config: AxiosRequestConfig): ApiResponse {
 
 function useApi(config: AxiosRequestConfig): AxiosResponse {
   const isMount = useRef(false)
-  const [data, setData] = useState(null)
-   
+  const [res, setRes] = useState(null)
   const loginReq = useCallback(async () => {
     try {
       const response: AxiosResponse = await instance(config)
-      setData({...response})
+      setRes(response)
     } catch (e) {
       console.error(e)
     }
@@ -103,7 +102,7 @@ function useApi(config: AxiosRequestConfig): AxiosResponse {
     loginReq()
   }, [loginReq])
 
-  return data
+  return res
 }
 
 export { ApiResponse, useServerApi, useApi }

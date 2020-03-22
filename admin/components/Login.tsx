@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useState, useEffect } from 'react'
 import { Form, Button, Input, Divider } from 'antd'
 import { Link, RouteComponentProps } from 'react-router-dom'
 import { UserOutlined } from '@ant-design/icons'
@@ -20,53 +20,59 @@ const Login: FC<RouteComponentProps> = (props: RouteComponentProps) => {
 
   return (
     <div className="login-wrapper">
-      <div className="form-wrapper">
-        <div className="form-title-wrapper">
-          <h3 className="form-title">js-questions 管理</h3>
+      <div className="login-form-wrapper">
+        <div className="login-form-title-wrapper">
+          <h3 className="login-form-title">js-questions 管理</h3>
           <Divider></Divider>
         </div>
-         <LoginFrom route={props} operator={operator}></LoginFrom> 
+         <LoginForm route={props} operator={operator}></LoginForm> 
       </div>
     </div>
   )
 }
 
 // Input组件focus状态下按enter机会提交表单，不用额外监听键盘事件
-const LoginFrom: FC<RouteProps> = (props: RouteProps) => {
+const LoginForm: FC<RouteProps> = (props: RouteProps) => {
   // 经 Form.useForm() 创建的 form 控制实例，不提供时会自动创建
   const [form] = Form.useForm()
-  
-  const initConfig: AxiosRequestConfig = { url: '', 
-                                           params: {}
+  const initConfig: AxiosRequestConfig = { 
+                                            url: '/login', 
+                                            data: {}
                                          }
 
   const [loginReqConfig, SetLoginConfig] = useState(initConfig)
+
   const loginRes: AxiosResponse<any> = useApi(loginReqConfig)
-
-  const handleLoginRes = (res: AxiosResponse<any>): void => {
-    if (res) {
-      // 将token存入localStorage
-      // 
-      props.route.history.push('/regist')
-    }
-  }
-
-  handleLoginRes(loginRes)
-
+  
   const handleSumbit = () => {
     form.validateFields().then(values => {
       const { username, pwd } = values
-      SetLoginConfig({
-        url: '/login',
-        params: {
-          username,
-          pwd
-        }
-      })
+      // 验证表单输入是否跟之前的输入相同
+      if (username !== loginReqConfig.data.username || pwd !== loginReqConfig.data.pwd) {
+        SetLoginConfig({
+          ...loginReqConfig,
+          data: {
+            username,
+            pwd
+          }
+        })
+      }
     }).catch(err => {
       console.log(err)
     })
   }
+  /* 组件会刷新两次，第一次一次在setLoginConfig马上刷新。
+  因为axios是异步请求，所以返回的loginRes还是原来的loginRes。
+  当axios请求完接口，有新的返回时，useApi再次让组件re-render，才会有正确的loginRes */
+ 
+  useEffect(() => {
+    if (loginRes) {
+      if (loginRes.status === 200 && loginRes.data.flag === 1) {
+        props.operator.setToken(loginRes.data.token)
+        props.route.history.push('/regist')
+      }
+    }
+  }, [loginRes])
 
   return (
     // form表单控制实例
@@ -81,9 +87,9 @@ const LoginFrom: FC<RouteProps> = (props: RouteProps) => {
           { required: true,
             message: '请输入用户名' 
           }, {
-            min: 5,
-            max: 10,
-            message: '用户名长度为5-10'
+            min: 4,
+            max: 15,
+            message: '用户名长度为4-15'
           }, {
             pattern: /^\w+$/g,
             message: '用户名只能是数字和字母组合'
@@ -91,9 +97,8 @@ const LoginFrom: FC<RouteProps> = (props: RouteProps) => {
         }
       >
         <Input 
-        className="form-input" 
-        placeholder="username"
-        prefix={<UserOutlined  style={{ color: 'rgba(0,0,0,.25)' }} />} 
+          placeholder="username"
+          prefix={<UserOutlined  style={{ color: 'rgba(0,0,0,.25)' }} />} 
         />
       </Form.Item>
       <Form.Item
@@ -109,12 +114,17 @@ const LoginFrom: FC<RouteProps> = (props: RouteProps) => {
           }, {
             pattern: /^\w+$/g,
             message: '密码只能是数字和字母组合'
-          }]}
+          }]
+        }
       >
-        <Input.Password className="form-input" placeholder="password" type="password" />
+        <Input.Password placeholder="password" />
       </Form.Item>
-      <Form.Item className="btn-wrapper">
-        <Button type="primary" htmlType="submit">登 录</Button>
+      <Form.Item>
+        <Button 
+          type="primary" 
+          htmlType="submit"
+        >登 录
+        </Button>
         <Button type="link">
           <Link to="/regist">注 册</Link>
         </Button>

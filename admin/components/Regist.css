@@ -1,4 +1,4 @@
-.login-wrapper {
+.regist-wrapper {
   display: flex;
   height: 100vh;
   width: 100vw;
@@ -6,16 +6,10 @@
   align-items: center;
   background-image: linear-gradient(60deg, #2f54eb, #b5f5ec);
 }
-.login-form-wrapper {
+.regist-form-wrapper {
   padding: 20px 40px;
   border-radius: 8px;
   user-select: none;
   background-color: #fff;
   border: 1px solid #ccc;
-}
-.loginform-title {
-  text-align: center;
-}
-.login-wrapper {
-  margin-bottom: 0;
 }
