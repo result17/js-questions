@@ -4,6 +4,7 @@ import * as bodyParser from 'koa-bodyparser'
 import { unauthHandler } from '../middlewares/unauthHandler'
 import { verifyToken } from '../middlewares/verifyToken'
 import { loginRouter } from '../routers/login'
+import { registRouter } from '../routers/regist'
 
 const admin = new Koa()
 
@@ -14,5 +15,6 @@ admin.use(unauthHandler)
 admin.use(verifyToken)
 
 admin.use(loginRouter.routes())
+admin.use(registRouter.routes())
 
 export { admin }

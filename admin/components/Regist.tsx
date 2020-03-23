@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect } from 'react'
-import { Form, Button, Divider, Input, Popover } from 'antd'
+import { Form, Button, Divider, Input, Popover, notification } from 'antd'
 import { UserOutlined, GithubOutlined } from '@ant-design/icons'
 import { Link, RouteComponentProps } from 'react-router-dom'
 import { useApi } from '../utils/useServerApi'
@@ -12,7 +12,10 @@ interface registData {
   pwd: string,
   githubUsername: string,
   // timestamp
-  create_at: number
+}
+
+interface RouteProps {
+  route: RouteComponentProps
 }
 
 const Regist: FC<RouteComponentProps> = (props: RouteComponentProps) => {
@@ -23,19 +26,18 @@ const Regist: FC<RouteComponentProps> = (props: RouteComponentProps) => {
            <h3 className="regist-form-title">注册账号</h3>
            <Divider></Divider>
          </div>
-         <RegistForm></RegistForm>
+         <RegistForm route={props}></RegistForm>
       </div>
     </div>
   )
 }
 
-const RegistForm: FC = () => {
+const RegistForm: FC<RouteProps> = (props: RouteProps) => {
   const [form] = Form.useForm()
   const initRegistData: registData = {
                                        username: '',
                                        pwd: '',
                                        githubUsername: '',
-                                       create_at: 0
                                      }
   
   const [registReqConfig, setRegistReqConfig] = useState({
@@ -49,12 +51,27 @@ const RegistForm: FC = () => {
     </div>
   )
   
+  const registNotification = (type: 'success' | 'error') => {
+    if (type === 'success') {
+      notification[type]({
+        message: '注册成功',
+        description: '页面将会跳转至登录页面',
+        duration: 2
+      })
+    }
+  }
+
   const registRes: AxiosResponse<any> = useApi(registReqConfig)
 
   useEffect(() => {
     if (registRes) {
       if (registRes.status === 200 && registRes.data.flag === 1) {
         // 服务器通知完成注册后
+        registNotification('success')
+        const timer = setTimeout(() => {
+          props.route.history.push('/login')
+        }, 2000)
+        return () => clearTimeout(timer)
       }
     }
   }, [registRes])
@@ -69,7 +86,6 @@ const RegistForm: FC = () => {
             username,
             pwd,
             githubUsername,
-            create_at: Date.now()
           }
         })
       }
@@ -133,7 +149,7 @@ const RegistForm: FC = () => {
             message: '请确认密码'
           }, ({ getFieldValue }) => ({
             validator(rule, value) {
-              if (!value || getFieldValue('password') === value) {
+              if (!value || getFieldValue('pwd') === value) {
                 return Promise.resolve()
               }
               return Promise.reject('两次输入的密码不匹配')
@@ -145,7 +161,7 @@ const RegistForm: FC = () => {
       </Form.Item>
       <Form.Item
         label="github用户名"
-        name="githubUserName"
+        name="githubUsername"
         rules={[{
           required: true,
           message: '输入GitHub用户名'

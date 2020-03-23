@@ -34,8 +34,8 @@ const manager_info_table = `CREATE TABLE IF NOT EXISTS manager_info(
                               id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
                               managername VARCHAR(50) NOT NULL,
                               type int NOT NULL,
-                              create_at datetime NOT NULL, 
-                              github VARCHAR(255) NOT NULL
+                              github VARCHAR(255) NOT NULL,
+                              create_at datetime NOT NULL DEFAULT NOW()
                            );`
 
 const manager_mix_table = `CREATE TABLE IF NOT EXISTS manager_mix(

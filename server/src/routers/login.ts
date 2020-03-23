@@ -18,7 +18,6 @@ const loginRouter = new Router()
 loginRouter.post('/login', async (ctx, next) => {
   // bodyparse分卸请求体
   const { username, pwd } = ctx.request.body
-  // console.log(ctx.request.body)
 
   if (!username || !pwd) {
     const res: LoginRes = {
@@ -39,9 +38,9 @@ loginRouter.post('/login', async (ctx, next) => {
   await database.useDB()
   // 此函数有副作用修改container的data属性，data = rows[0]
   await database.selInfoByName(username, idCon)
-
-  if (idCon.data.id && typeof idCon.data.id === JSTypes.number && !Number.isNaN(idCon.data.id)) {
+  if (idCon.data && typeof idCon.data.id === JSTypes.number && !Number.isNaN(idCon.data.id)) {
     await database.selMixandSaltByID(idCon.data.id as number, mixCon)
+    await database.end()
     if (mixCon.data.mix && mixCon.data.salt && typeof mixCon.data.mix === JSTypes.string && typeof mixCon.data.salt === JSTypes.string) {
       const encrypt = new Encrypt(pwd)
       if (encrypt.verifyEncrypt(mixCon.data.mix, mixCon.data.salt)) {

@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "parse2Js": "ts-node ./src/utils/MD2Js.ts"
+    "parse2Js": "ts-node ./src/utils/MD2Js.ts",
+    "start": "ts-node ./src/index.ts"
   },
   "author": "",
   "license": "ISC",
@@ -15,6 +16,7 @@
     "@types/koa-bodyparser": "^4.3.0",
     "@types/koa-router": "^7.4.0",
     "@types/koa2-cors": "^2.0.1",
+    "@types/moment": "^2.13.0",
     "axios": "^0.19.2",
     "cross-env": "^7.0.2",
     "jsonwebtoken": "^8.5.1",
@@ -23,6 +25,7 @@
     "koa-jwt": "^3.6.0",
     "koa-router": "^8.0.8",
     "koa2-cors": "^2.0.6",
+    "moment": "^2.24.0",
     "mysql2": "^2.1.0"
   }
 }

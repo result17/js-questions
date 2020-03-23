@@ -4,7 +4,7 @@ import * as path from 'path'
 import { GetSecret } from '../config/GetSecret'
 
 const verifyToken: Middleware = jwt(new GetSecret(path.resolve(__dirname, '..', 'config', 'secret.pub'))).unless({
-  path: [/login/, /register/]
+  path: [/login/, /regist/]
 })
 
 export { verifyToken }

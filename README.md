@@ -3,3 +3,4 @@
 - css-in-js。
 - Redis创建token黑名单。
 - salt取值和hash验证存在问题。
+- 未做用户名unique处理。
