@@ -134,4 +134,4 @@ const LoginForm: FC<RouteProps> = (props: RouteProps) => {
   )
 }
 
-export { Login }
+export default Login 
