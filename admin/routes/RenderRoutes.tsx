@@ -26,7 +26,7 @@ const RenderRoutes: FC<RenderRoutesProp> = (prop: RenderRoutesProp) => {
       return routeList
     }, [])
   }
-
+  console.log(auth.role)
   return (
     <Switch>
       { renderRoutes() }

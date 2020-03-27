@@ -76,7 +76,7 @@ const LoginForm: FC<RouteProps> = (props: RouteProps) => {
         auth.setLogin(jwtJson.jwtPayload.role)
         // 应该判断token正确性，再保存
         props.operator.setToken(loginRes.data.token)
-        props.route.history.push('/regist')
+        props.route.history.push('/')
       }
     }
   }, [loginRes])

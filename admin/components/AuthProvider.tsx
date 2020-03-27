@@ -47,7 +47,7 @@ const AuthProvider: FC<AuthProviderProps> = (props: AuthProviderProps) => {
 
   const [authInfo, setAuthInfo] = useState(defaultVal)
 
-  return (<AuthContext.Provider value ={ defaultVal }>
+  return (<AuthContext.Provider value ={ authInfo }>
     { props.children }
   </AuthContext.Provider>
   )

@@ -74,6 +74,7 @@ const RegistForm: FC<RouteProps> = (props: RouteProps) => {
         return () => clearTimeout(timer)
       }
     }
+    return undefined
   }, [registRes])
   
   const handleSumbit = () => {
