@@ -2,7 +2,7 @@ import React, { FC, useState, useEffect } from 'react'
 import { Form, Button, Divider, Input, Popover, notification } from 'antd'
 import { UserOutlined, GithubOutlined } from '@ant-design/icons'
 import { Link, RouteComponentProps } from 'react-router-dom'
-import { useApi } from '../../utils/useServerApi'
+import { useApi } from '../../utils/useApi'
 import { AxiosResponse } from 'axios'
 
 import'./Regist.css'

@@ -1,17 +1,21 @@
+import * as path from 'path'
 import { GetSecret } from '../config//GetSecret'
 import * as jwt from 'jsonwebtoken'
 
 interface PayloadType {
-  username?: string
+  username?: string,
+  role: "admin" | "root" | "user"
 }
+
+const secret = new GetSecret(path.resolve(__dirname, '..', 'config', 'secret.pub')).secret
 
 class Token {
   payload: PayloadType
   private secret: string | Buffer
   option: jwt.SignOptions
-  constructor(payload: PayloadType, secretPath: string, option: jwt.SignOptions = {}) {
+  constructor(payload: PayloadType, option: jwt.SignOptions = {}) {
     this.payload = payload
-    this.secret = new GetSecret(secretPath).secret
+    this.secret = secret
     this.option = option
   }
   getToken(): string {

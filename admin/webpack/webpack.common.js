@@ -47,7 +47,8 @@ module.exports = {
           )]
         }),
         compilerOptions: {
-          module: 'es2015'
+          // 此选项会覆盖tsconfig.json的设置不建议在这里设置
+          module: 'esnext'
         }
       },
       exclude: /node_modules/

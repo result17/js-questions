@@ -5,6 +5,7 @@ import { ManagerOperate, DataContainer } from '../utils/ManagerOperate'
 import { Encrypt } from '../utils/Encrypt'
 import { JSTypes, HttpCode } from '../utils/Types'
 import { Token } from '../utils/Token'
+import { roles } from '../config/roles'
 
 // flag代表有没有通过后端验证
 interface LoginRes {
@@ -38,13 +39,17 @@ loginRouter.post('/login', async (ctx, next) => {
   await database.useDB()
   // 此函数有副作用修改container的data属性，data = rows[0]
   await database.selInfoByName(username, idCon)
-  if (idCon.data && typeof idCon.data.id === JSTypes.number && !Number.isNaN(idCon.data.id)) {
+  if (idCon.data && typeof idCon.data.id === JSTypes.number && typeof idCon.data.type === JSTypes.number) {
     await database.selMixandSaltByID(idCon.data.id as number, mixCon)
     await database.end()
     if (mixCon.data.mix && mixCon.data.salt && typeof mixCon.data.mix === JSTypes.string && typeof mixCon.data.salt === JSTypes.string) {
       const encrypt = new Encrypt(pwd)
       if (encrypt.verifyEncrypt(mixCon.data.mix, mixCon.data.salt)) {
-         const token = new Token({ username }, path.resolve(__dirname, '..', 'config', 'secret.pub'), {expiresIn: '1d'})
+        // jwt对header和payload签名并合并
+         const token = new Token({ 
+          username, 
+          role: roles(idCon.data.type as number)
+        }, { expiresIn: '3 days', issuer: 'js-questions server' })
          const res: LoginRes = {
            flag: 1,
            msg: 'Login successed!',

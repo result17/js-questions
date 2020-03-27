@@ -1,10 +1,12 @@
-import React, { FC, useState, useEffect } from 'react'
+import React, { FC, useState, useEffect, useContext } from 'react'
 import { Form, Button, Input, Divider } from 'antd'
 import { Link, RouteComponentProps } from 'react-router-dom'
 import { UserOutlined } from '@ant-design/icons'
 import { AxiosRequestConfig, AxiosResponse } from 'axios'
-import { useApi } from '../utils/useServerApi'
-import { TokenOperations } from '../utils/TokenOperations'
+import { useApi } from '../../utils/useApi'
+import { TokenOperations } from '../../utils/TokenOperations'
+import { AuthContext } from '../../components/AuthProvider'
+import JWTParser from '../../utils/JWTParser'
 
 import'./Login.css'
 
@@ -43,6 +45,8 @@ const LoginForm: FC<RouteProps> = (props: RouteProps) => {
   const [loginReqConfig, SetLoginConfig] = useState(initConfig)
 
   const loginRes: AxiosResponse<any> = useApi(loginReqConfig)
+
+  const auth = useContext(AuthContext)
   
   const handleSumbit = () => {
     form.validateFields().then(values => {
@@ -68,8 +72,10 @@ const LoginForm: FC<RouteProps> = (props: RouteProps) => {
   useEffect(() => {
     if (loginRes) {
       if (loginRes.status === 200 && loginRes.data.flag === 1) {
+        const jwtJson = new JWTParser(loginRes.data.token)
+        auth.setLogin(jwtJson.jwtPayload.role)
+        // 应该判断token正确性，再保存
         props.operator.setToken(loginRes.data.token)
-        // 解析token，更新全局的context
         props.route.history.push('/regist')
       }
     }

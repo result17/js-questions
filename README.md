@@ -4,3 +4,5 @@
 - Redis创建token黑名单。
 - salt取值和hash验证存在问题。
 - 未做用户名unique处理。
+- 将react-router-dom升级至V6。
+- 客户端验证token的正确性。

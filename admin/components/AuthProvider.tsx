@@ -1,13 +1,14 @@
 import React, { createContext, FC, useState } from 'react'
 
-type Roles  = 'root' | 'adimin' | 'user' | 'logout'
+// 写成全局的enum
+type Roles  = 'root' | 'admin' | 'user' | 'logout'
 
 interface AuthContextVal {
   isLogin: boolean,
   // token？
   role: Roles,
-  logout: () => void,
-  login: (role: Roles) => void,
+  setLogout: () => void,
+  setLogin: (role: Roles) => void,
 }
 
 interface AuthProviderProps {
@@ -16,21 +17,21 @@ interface AuthProviderProps {
 
 const AuthContext = createContext({
   isLogin: false,
-  role: 'user',
-  logout: () => {},
-  login: (role: Roles) => {}
+  role: 'user' as Roles,
+  setLogout: () => {},
+  setLogin: (role: Roles) => {}
 })
 AuthContext.displayName = 'AuthContext'
 
 const AuthProvider: FC<AuthProviderProps> = (props: AuthProviderProps) => {
-  const logout = () => {
+  const setLogout = () => {
     setAuthInfo({
       ...authInfo,
       isLogin: false,
       role: 'logout'
     })
   }
-  const login = (role: Roles) => {
+  const setLogin = (role: Roles) => {
     setAuthInfo({
       ...authInfo,
       isLogin: true,
@@ -40,8 +41,8 @@ const AuthProvider: FC<AuthProviderProps> = (props: AuthProviderProps) => {
   const defaultVal: AuthContextVal = {
     isLogin: false,
     role: 'logout',
-    logout: logout,
-    login: login
+    setLogout: setLogout,
+    setLogin: setLogin
   }
 
   const [authInfo, setAuthInfo] = useState(defaultVal)

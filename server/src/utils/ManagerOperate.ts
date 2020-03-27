@@ -66,7 +66,7 @@ class ManagerOperate extends DbOperate {
   async selInfoByName(name: string, o: DataContainer): Promise<ManagerOperate> {
     try {
       if (this.connection && this.curDb === this.db) {
-        await this.connection.promise().query(`SELECT id FROM ?? WHERE ${this.tableName}name = ?`, [`${this.tableName}_info`, name]).then(([rows, fields]) => {
+        await this.connection.promise().query(`SELECT id, type FROM ?? WHERE ${this.tableName}name = ?`, [`${this.tableName}_info`, name]).then(([rows, fields]) => {
           o.data = rows.length ? rows[0] : null
           console.log(`name: ${name} manager found, data is in the DataContainer.`)
         }).catch(err => {
