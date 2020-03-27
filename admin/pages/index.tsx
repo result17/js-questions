@@ -1,10 +1,11 @@
 import React, { lazy, FC, Suspense } from 'react'
 import Fallback from './fallback/Fallback'
+import { RouteComponentProps } from 'react-router-dom'
 
 const atLeastDelayTime: number = 1500
 
 // 有bug， delayLoad不能抽象到函数使用，否则报错cant find module
-const LoginContainer: FC = lazy(async () => {
+const LoginContainer: FC<RouteComponentProps> = lazy(async () => {
   const importPromise = import('./login/Login')
   const delayPromise = new Promise(res => {
     let timer = setTimeout(() => {
@@ -14,7 +15,8 @@ const LoginContainer: FC = lazy(async () => {
   })
   return Promise.all([importPromise, delayPromise]).then(() => importPromise)
 })
-const RegistContainer: FC = lazy(async () => {
+
+const RegistContainer: FC<RouteComponentProps> = lazy(async () => {
   const importPromise = import('./regist/Regist')
   const delayPromise = new Promise(res => {
     let timer = setTimeout(() => {
@@ -24,7 +26,8 @@ const RegistContainer: FC = lazy(async () => {
   })
   return Promise.all([importPromise, delayPromise]).then(() => importPromise)
 })
-const NotFoundContainer: FC = lazy(async () => {
+
+const NotFoundContainer: FC<RouteComponentProps> = lazy(async () => {
   const importPromise = import('./notFound/NotFound')
   const delayPromise = new Promise(res => {
     let timer = setTimeout(() => {
@@ -35,33 +38,33 @@ const NotFoundContainer: FC = lazy(async () => {
   return Promise.all([importPromise, delayPromise]).then(() => importPromise)
 })
 
-const Login: FC = () => {
+const Login: FC<RouteComponentProps> = (props: RouteComponentProps) => {
   return (
-    <div>
-      <Suspense fallback={ <Fallback /> }>
-        <LoginContainer />
+    <>
+      <Suspense fallback={ <Fallback /> } {...props}>
+        <LoginContainer {...props}/>
       </Suspense>
-    </div>
+    </>
   )
 }
 
-const Regist: FC = () => {
+const Regist: FC<RouteComponentProps> = (props: RouteComponentProps) => {
   return (
-    <div>
-      <Suspense fallback={ <Fallback /> }>
-        <RegistContainer />
+    <>
+      <Suspense fallback={ <Fallback /> } {...props}>
+        <RegistContainer {...props}/>
       </Suspense>
-    </div>
+    </>
   )
 }
 
-const NotFound: FC = () => {
+const NotFound: FC<RouteComponentProps> = (props: RouteComponentProps) => {
   return (
-    <div>
-      <Suspense fallback= { <Fallback /> }>
-        <NotFoundContainer />
+    <>
+      <Suspense fallback= { <Fallback /> } {...props}>
+        <NotFoundContainer {...props}/>
       </Suspense>
-    </div>
+    </>
   )
 }
 

@@ -3,10 +3,11 @@ import { Roles } from '../components/AuthProvider'
 import { RedirLogin } from '../components/RedirLogin'
 import { Layout } from '../components/Layout'
 import { Login, Regist, NotFound } from '../pages/index'
+import { RouteComponentProps } from 'react-router-dom'
 
 interface MyRoute {
   path: '/login' | '/regist' | '/' | '*' | '/quizLib'
-  component: FC,
+  component: FC<RouteComponentProps>,
   roles: Roles[]
 }
 

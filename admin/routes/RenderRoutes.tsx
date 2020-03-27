@@ -20,7 +20,7 @@ const RenderRoutes: FC<RenderRoutesProp> = (prop: RenderRoutesProp) => {
           key={i}
           exact={true}
           path={route.path}
-          component={route.component}
+          render={props => <route.component {...props}/>}
         />))
       }
       return routeList

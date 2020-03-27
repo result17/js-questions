@@ -36,10 +36,12 @@ class JWTParser implements parsedData {
   }
   // 静态方法能直接调用静态属性
   static parseHeader() {
-    return JSON.parse(atob(this.rawHeader)) 
+    const str = new Buffer(this.rawHeader, 'base64').toString()
+    return JSON.parse(str) 
   }
   static parsePayload() {
-    const temp = JSON.parse(atob(this.rawPayload))
+    const str = new Buffer(this.rawPayload, 'base64').toString() 
+    const temp = JSON.parse(str)
     // 将unix时间戳转换为JS时间戳
     try {
       temp.iat *= 1000
@@ -51,4 +53,5 @@ class JWTParser implements parsedData {
   }
 }
 
-export default JWTParser
+const jwt = new JWTParser('Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3QiLCJyb2xlIjoicm9vdCIsImlhdCI6MTU4NTMwODYzMywiZXhwIjoxNTg1NTY3ODMzLCJpc3MiOiJqcy1xdWVzdGlvbnMgc2VydmVyIn0.B5bti4d4RKoAufvIYGMeewUY7Mv5F2nzJgiIV_ZF9uI')
+console.log(jwt)
