@@ -31,5 +31,15 @@ interface AuthState {
   user: string,
 }
 
+/* 
+show  代表是否需要渲染AuthNotificater（靠token判断）
+isVerifing 代表是否在检验中
+succeed 代表检验是否通过
+*/
+interface verifyState {
+  show: boolean,
+  isVerifing: boolean,
+  succeed: boolean,
+}
 
-export { AuthProviderProps, RoleList, Role, AuthActionList, AuthAction, AuthState, AuthActionType }
+export { AuthProviderProps, RoleList, Role, AuthActionList, AuthAction, AuthState, AuthActionType, verifyState }

@@ -5,6 +5,7 @@ import reducer from './reducer'
 import { useApi } from '../../utils/useApi'
 import { TokenOperations } from '../../utils/TokenOperations'
 import JWTParser from '../../utils/JWTParser'
+import AuthNotificater from './AuthNotificater'
 
 // 全局共享role和user，null只为了初始化，无实际意义
 const initialAuthState: AuthState = {
@@ -14,7 +15,8 @@ const initialAuthState: AuthState = {
 
 const AuthContext = createContext(null)
 
-const AuthProvider: FC<AuthProviderProps> = (props: AuthProviderProps) => {
+const AuthProvider: FC<AuthProviderProps> = (props: AuthProviderProps) => {.
+  const [] = useState()
   const [state, dispatch] = useReducer(reducer, initialAuthState)
   const initVeifyReqConfig: AxiosRequestConfig = { url: '' }
   const [veifyReqConfig, setVeifyReqConfig] = useState(initVeifyReqConfig)
@@ -62,7 +64,7 @@ const AuthProvider: FC<AuthProviderProps> = (props: AuthProviderProps) => {
 
   return (
     <AuthContext.Provider value={{ state, dispatch }}>
-      { props.children }
+      <AuthNotificater></AuthNotificater>
     </AuthContext.Provider>
   )
 }
