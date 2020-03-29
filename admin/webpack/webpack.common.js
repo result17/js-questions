@@ -12,7 +12,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'js-quiz',
       template: path.resolve('..', 'public', 'index.html'),
-      filename: './index.html'
+      filename: './index.html',
+      favicon: path.resolve('..', 'public', 'favicon.png'),
     }),
     new MiniCssExtractPlugin({
       filename: devMode ? '[name].css' : '[name].[hash].css',

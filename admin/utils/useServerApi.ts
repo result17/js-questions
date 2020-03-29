@@ -28,7 +28,9 @@ function useServerApi(config: AxiosRequestConfig): ApiResponse {
       const response: AxiosResponse = await instance(config)
       setData(response)
     } catch (e) {
+      setData(null)
       setError(e)
+      console.error(e)
     }
     setIsLoading(false)
   }, [config])

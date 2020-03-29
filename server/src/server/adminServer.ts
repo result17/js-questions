@@ -5,6 +5,7 @@ import { unauthHandler } from '../middlewares/unauthHandler'
 import { verifyToken } from '../middlewares/verifyToken'
 import { loginRouter } from '../routers/login'
 import { registRouter } from '../routers/regist'
+import { veifyRouter } from '../routers/veify'
 
 const admin = new Koa()
 
@@ -16,5 +17,6 @@ admin.use(verifyToken)
 
 admin.use(loginRouter.routes())
 admin.use(registRouter.routes())
+admin.use(veifyRouter.routes())
 
 export { admin }

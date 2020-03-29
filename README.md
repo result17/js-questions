@@ -6,3 +6,5 @@
 - 未做用户名unique处理。
 - 将react-router-dom升级至V6。
 - 客户端验证token的正确性。
+- context更新后组件性能优化memo()。
+- 登录失败提示。

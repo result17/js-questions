@@ -13,7 +13,7 @@ const registRouter = new Router()
 
 registRouter.post('/regist', async (ctx, next) => {
   const { username, pwd, githubUsername } = ctx.request.body
-  console.log(ctx.request.body)
+  
   if (!username || !pwd || !githubUsername) {
     const res: RegistRes = {
       flag: 0,

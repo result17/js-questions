@@ -1,6 +1,6 @@
-import React, { FC, useContext } from 'react'
+import React, { FC, useContext, useMemo } from 'react'
 import { Switch, Route } from 'react-router-dom'
-import { AuthContext } from '../components/AuthProvider'
+import { AuthContext } from '../components/AuthProvider/index'
 import { MyRoute } from './myRoutes'
 
 interface RenderRoutesProp {
@@ -13,20 +13,23 @@ const RenderRoutes: FC<RenderRoutesProp> = (prop: RenderRoutesProp) => {
   
   const renderRoutes = () => {
     // 根据context中的角色动态加载路由，推出登录的角色是logout
-    return routes.reduce((routeList, route, i) => {
-      if (route.roles && route.roles.indexOf(auth.role) !== -1) {
-        routeList.push((
-        <Route 
-          key={i}
-          exact={true}
-          path={route.path}
-          render={props => <route.component {...props}/>}
-        />))
-      }
-      return routeList
-    }, [])
+    return useMemo(() => {
+      const asyncRoutes:MyRoute[] = routes.reduce((routeList, route, i) => {
+        if (route.roles && route.roles.indexOf(auth.state.role) !== -1) {
+          routeList.push((
+          <Route 
+            key={i}
+            exact={true}
+            path={route.path}
+            render={props => <route.component {...props}/>}
+          />))
+        }
+        return routeList
+      }, [])
+      return asyncRoutes
+    }, [auth.state.role])
   }
-  console.log(auth.role)
+
   return (
     <Switch>
       { renderRoutes() }

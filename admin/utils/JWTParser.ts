@@ -1,5 +1,5 @@
 /* 客户端信任服务器返回的JWT json */
-import { Roles } from '../components/AuthProvider'
+import { Role } from '../components/AuthProvider/index'
 
 interface JWTHeader {
   alg: string,
@@ -8,7 +8,7 @@ interface JWTHeader {
 
 interface JWTPayload {
   username: string,
-  role: Roles,
+  role: Role,
   // 签发时间（unix时间戳）
   iat: number,
   // token过时的时间戳

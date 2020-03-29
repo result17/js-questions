@@ -5,7 +5,7 @@ import { UserOutlined } from '@ant-design/icons'
 import { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { useApi } from '../../utils/useApi'
 import { TokenOperations } from '../../utils/TokenOperations'
-import { AuthContext } from '../../components/AuthProvider'
+import { AuthContext, AuthActionList } from '../../components/AuthProvider/index'
 import JWTParser from '../../utils/JWTParser'
 
 import'./Login.css'
@@ -17,8 +17,8 @@ interface RouteProps {
 
 const Login: FC<RouteComponentProps> = (props: RouteComponentProps) => {
 //  每次转到登录页面时清除token
-  const operator = new TokenOperations
-  operator.delToken()
+  const operator = new TokenOperations()
+  // operator.delToken()
 
   return (
     <div className="login-wrapper">
@@ -73,7 +73,11 @@ const LoginForm: FC<RouteProps> = (props: RouteProps) => {
     if (loginRes) {
       if (loginRes.status === 200 && loginRes.data.flag === 1) {
         const jwtJson = new JWTParser(loginRes.data.token)
-        auth.setLogin(jwtJson.jwtPayload.role)
+        auth.dispatch({
+          type: AuthActionList.changeUser,
+          role: jwtJson.jwtPayload.role.toUpperCase(),
+          user: jwtJson.jwtPayload.username
+        })
         // 应该判断token正确性，再保存
         props.operator.setToken(loginRes.data.token)
         props.route.history.push('/')
