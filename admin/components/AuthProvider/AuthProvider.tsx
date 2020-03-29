@@ -5,7 +5,7 @@ import reducer from './reducer'
 import { useApi } from '../../utils/useApi'
 import { TokenOperations } from '../../utils/TokenOperations'
 import JWTParser from '../../utils/JWTParser'
-import AuthNotificater from './AuthNotificater'
+import notifications from '../../decarations/notifications'
 
 // 全局共享role和user，null只为了初始化，无实际意义
 const initialAuthState: AuthState = {
@@ -15,8 +15,7 @@ const initialAuthState: AuthState = {
 
 const AuthContext = createContext(null)
 
-const AuthProvider: FC<AuthProviderProps> = (props: AuthProviderProps) => {.
-  const [] = useState()
+const AuthProvider: FC<AuthProviderProps> = (props: AuthProviderProps) => {
   const [state, dispatch] = useReducer(reducer, initialAuthState)
   const initVeifyReqConfig: AxiosRequestConfig = { url: '' }
   const [veifyReqConfig, setVeifyReqConfig] = useState(initVeifyReqConfig)
@@ -35,6 +34,7 @@ const AuthProvider: FC<AuthProviderProps> = (props: AuthProviderProps) => {.
 
   useEffect(() => {
     if (tokenContainer.current.hasToken()) {
+      notifications.verifingNotification()
       setVeifyReqConfig({ url: props.interface })
     } else {
       dispatch({
@@ -48,13 +48,16 @@ const AuthProvider: FC<AuthProviderProps> = (props: AuthProviderProps) => {.
       if (veifyRes.status === 200 && veifyRes.data.flag === 1) {
         // 通过验证，解析token
         const jwtParser = new JWTParser(tokenContainer.current.getToken())
+        const name = jwtParser.jwtPayload.username
+        notifications.successNotification(name)
         dispatch({
           type: AuthActionList.changeUser,
           role: (jwtParser.jwtPayload.role.toUpperCase()) as Role,
-          user: jwtParser.jwtPayload.username,
+          user: name,
         })
       } else if (veifyRes.status === 401) {
         // tokenContainer.current.delToken()
+        notifications.failedNotification()
         dispatch({
           type: AuthActionList.unAuth,
         })
@@ -64,7 +67,7 @@ const AuthProvider: FC<AuthProviderProps> = (props: AuthProviderProps) => {.
 
   return (
     <AuthContext.Provider value={{ state, dispatch }}>
-      <AuthNotificater></AuthNotificater>
+      { props.children }
     </AuthContext.Provider>
   )
 }

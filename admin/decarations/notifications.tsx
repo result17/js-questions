@@ -1,10 +1,11 @@
-import React, { FC, useEffect, memo } from 'react'
+import React from 'react'
 import { notification } from 'antd'
 import { UserOutlined, CloseOutlined, CheckOutlined } from '@ant-design/icons'
 
 const key = 'VERIFY'
 
-const notificationsRef = {
+// 凡是用到jsx语法都要使用tsx文件，还有引入React
+const notifications = {
   verifingNotification() {
     const verifingIcon = <UserOutlined style={{ fontSize: 24 }} />
     const args = {
@@ -16,7 +17,7 @@ const notificationsRef = {
     }
     notification.open(args)
   },
-  FailedNotification() {
+  failedNotification() {
     const failedIcon = <CloseOutlined style={{ fontSize: 24 }} />
     const args = {
       message: '验证失败',
@@ -27,11 +28,11 @@ const notificationsRef = {
     }
     notification.open(args)
   },
-  successNotification() {
+  successNotification(name: string) {
     const successIcon = <CheckOutlined style={{ fontSize: 24 }}/>
     const args = {
       message: '登录成功',
-      description: '跳转至主页',
+      description: `欢迎回来，${name}！`,
       duration: 3,
       icon: successIcon,
       key: key,
@@ -40,14 +41,4 @@ const notificationsRef = {
   }
 }
 
-const AuthNotificater: FC = (props) => {
-  
-  
-
-  return(
-    <>
-      { props.children }
-    </>
-  )
-}
-export default memo(AuthNotificater, [])
+export default notifications
