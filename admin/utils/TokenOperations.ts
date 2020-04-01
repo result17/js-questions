@@ -17,4 +17,5 @@ class TokenOperations {
   }
 }
 
-export { TokenOperations }
+const tokenOperations = new TokenOperations()
+export { tokenOperations }

@@ -1,9 +1,9 @@
-import React, { createContext, FC, useReducer, useEffect, useState, useRef } from 'react'
+import React, { createContext, FC, useReducer, useEffect, useState } from 'react'
 import { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { AuthProviderProps, AuthState, RoleList, AuthActionList, Role } from './type'
 import reducer from './reducer'
 import { useApi } from '../../utils/useApi'
-import { TokenOperations } from '../../utils/TokenOperations'
+import { tokenOperations } from '../../utils/TokenOperations'
 import JWTParser from '../../utils/JWTParser'
 import notifications from '../../decarations/notifications'
 
@@ -20,7 +20,6 @@ const AuthProvider: FC<AuthProviderProps> = (props: AuthProviderProps) => {
   const initVeifyReqConfig: AxiosRequestConfig = { url: '' }
   const [veifyReqConfig, setVeifyReqConfig] = useState(initVeifyReqConfig)
   const veifyRes: AxiosResponse<any> = useApi(veifyReqConfig)
-  const tokenContainer = useRef(new TokenOperations())
   
    /* 
       请求组件props上的veify interface;
@@ -33,7 +32,7 @@ const AuthProvider: FC<AuthProviderProps> = (props: AuthProviderProps) => {
    */
 
   useEffect(() => {
-    if (tokenContainer.current.hasToken()) {
+    if (tokenOperations.hasToken()) {
       notifications.verifingNotification()
       setVeifyReqConfig({ url: props.interface })
     } else {
@@ -47,7 +46,7 @@ const AuthProvider: FC<AuthProviderProps> = (props: AuthProviderProps) => {
     if (veifyRes) {
       if (veifyRes.status === 200 && veifyRes.data.flag === 1) {
         // 通过验证，解析token
-        const jwtParser = new JWTParser(tokenContainer.current.getToken())
+        const jwtParser = new JWTParser(tokenOperations.getToken())
         const name = jwtParser.jwtPayload.username
         notifications.successNotification(name)
         dispatch({

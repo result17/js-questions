@@ -41,8 +41,8 @@ const NotFoundContainer: FC<RouteComponentProps> = lazy(async () => {
 const Login: FC<RouteComponentProps> = (props: RouteComponentProps) => {
   return (
     <>
-      <Suspense fallback={ <Fallback /> } {...props}>
-        <LoginContainer {...props}/>
+      <Suspense fallback={ <Fallback /> }>
+        <LoginContainer { ...props }/>
       </Suspense>
     </>
   )
@@ -51,7 +51,7 @@ const Login: FC<RouteComponentProps> = (props: RouteComponentProps) => {
 const Regist: FC<RouteComponentProps> = (props: RouteComponentProps) => {
   return (
     <>
-      <Suspense fallback={ <Fallback /> } {...props}>
+      <Suspense fallback={ <Fallback /> }>
         <RegistContainer {...props}/>
       </Suspense>
     </>
@@ -61,7 +61,7 @@ const Regist: FC<RouteComponentProps> = (props: RouteComponentProps) => {
 const NotFound: FC<RouteComponentProps> = (props: RouteComponentProps) => {
   return (
     <>
-      <Suspense fallback= { <Fallback /> } {...props}>
+      <Suspense fallback= { <Fallback /> }>
         <NotFoundContainer {...props}/>
       </Suspense>
     </>

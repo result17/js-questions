@@ -14,6 +14,7 @@ const notifications = {
       duration: 0,
       icon: verifingIcon,
       key: key,
+      top: 80,
     }
     notification.open(args)
   },
@@ -25,6 +26,7 @@ const notifications = {
       duration: 3,
       icon: failedIcon,
       key: key,
+      top: 80,
     }
     notification.open(args)
   },
@@ -36,6 +38,7 @@ const notifications = {
       duration: 3,
       icon: successIcon,
       key: key,
+      top: 80,
     }
     notification.open(args)
   }

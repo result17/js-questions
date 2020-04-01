@@ -4,7 +4,7 @@ import { Link, RouteComponentProps } from 'react-router-dom'
 import { UserOutlined } from '@ant-design/icons'
 import { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { useApi } from '../../utils/useApi'
-import { TokenOperations } from '../../utils/TokenOperations'
+import { tokenOperations } from '../../utils/TokenOperations'
 import { AuthContext, AuthActionList } from '../../components/AuthProvider/index'
 import JWTParser from '../../utils/JWTParser'
 import notifications from '../../decarations/notifications'
@@ -13,13 +13,14 @@ import'./Login.css'
 
 interface RouteProps {
   route: RouteComponentProps,
-  operator: TokenOperations,
+  operator: typeof tokenOperations,
 }
 
 const Login: FC<RouteComponentProps> = (props: RouteComponentProps) => {
 //  每次转到登录页面时清除token
-  const operator = new TokenOperations()
-  // operator.delToken()
+  useEffect(() => {
+    tokenOperations.delToken()
+  }, [])
 
   return (
     <div className="login-wrapper">
@@ -28,7 +29,7 @@ const Login: FC<RouteComponentProps> = (props: RouteComponentProps) => {
           <h3 className="login-form-title">js-questions 管理</h3>
           <Divider></Divider>
         </div>
-         <LoginForm route={props} operator={operator}></LoginForm> 
+         <LoginForm route={ props } operator={ tokenOperations }></LoginForm> 
       </div>
     </div>
   )

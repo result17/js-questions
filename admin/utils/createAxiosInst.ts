@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosInstance } from 'axios'
-import { TokenOperations } from './TokenOperations'
+import { tokenOperations } from './TokenOperations'
 
 const requestConfig: AxiosRequestConfig = {
   baseURL: '/api',
@@ -11,12 +11,11 @@ const requestConfig: AxiosRequestConfig = {
 }
 
 const instance: AxiosInstance = axios.create(requestConfig)
-const tokenOperate = new TokenOperations()
 
 // 请求添加认证token
 instance.interceptors.request.use(config => {
-  if (tokenOperate.hasToken()) {
-    const token = tokenOperate.getToken()
+  if (tokenOperations.hasToken()) {
+    const token = tokenOperations.getToken()
     config.headers.common['Authorization'] = token
   }
   return config
@@ -29,7 +28,7 @@ instance.interceptors.response.use(response => {
 }, err => {
   switch (err.response.status) {
     case 401:
-        tokenOperate.delToken()
+      tokenOperations.delToken()
         break
     case 403:
         break
