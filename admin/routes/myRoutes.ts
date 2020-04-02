@@ -5,19 +5,21 @@ import DashBroad from '../components/DashBroad/DashBroad'
 import { Login, Regist, NotFound } from '../pages/index'
 import { RouteComponentProps } from 'react-router-dom'
 import { HomeOutlined, FileOutlined } from '@ant-design/icons';
+import { Layout } from 'antd'
 
 /* 
 isMenuItem表明此对象是否被渲染sider，
 icon代表是sider图标。
 */ 
 interface MyRoute {
-  path: '/login' | '/regist' | '/' | '*' | '/quizLib' | '/quizlib/upload_quiz' | '/quizlib/edit_quiz'
+  path: '/login' | '/regist' | '/' | '*' | '/quizLib' | '/quizlib/upload_quiz' | '/quizlib/edit_quiz' | '/chart'
   title: string,
   component: FC<RouteComponentProps>,
   roles: Role[],
   isMenuItem: boolean,
   subs?: MyRoute[],
-  icon?: React.ForwardRefExoticComponent<any>
+  icon?: React.ForwardRefExoticComponent<any>,
+  contextComp?: FC<RouteComponentProps>
 }
 
 const routes: MyRoute[] = [{
@@ -29,7 +31,7 @@ const routes: MyRoute[] = [{
 }, {
   path: '/',
   component: DashBroad,
-  title: '面板',
+  title: '首 页',
   isMenuItem: true,
   icon: HomeOutlined,
   roles: [RoleList.admin, RoleList.root, RoleList.user]
@@ -46,6 +48,13 @@ const routes: MyRoute[] = [{
   isMenuItem: false,
   roles: [RoleList.admin, RoleList.root, RoleList.user, RoleList.logout]
 }, {
+  path: '/chart',
+  title: '图表demo',
+  component: DashBroad,
+  roles: [RoleList.admin, RoleList.root, RoleList.user],
+  isMenuItem: false,
+  contextComp: DashBroad,
+},{
   path: '/quizLib',
   title: '题库管理',
   component: DashBroad,

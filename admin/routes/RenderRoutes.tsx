@@ -8,7 +8,7 @@ interface RenderRoutesProps {
 }
 
 const RenderRoutes: FC<RenderRoutesProps> = (props: RenderRoutesProps) => {
-  const auth =  useContext(AuthContext)
+  const auth = useContext(AuthContext)
   const routes = props.routes
   
   const renderRoutes = () => {
@@ -17,12 +17,13 @@ const RenderRoutes: FC<RenderRoutesProps> = (props: RenderRoutesProps) => {
       const asyncRoutes:Route[] = routes.reduce((routeList, route) => {
         if (route.roles && route.roles.indexOf(auth.state.role) !== -1) {
           routeList.push((
-          <Route 
-            key={route.title}
-            exact={true}
-            path={route.path}
-            render={props => <route.component {...props}/>}
-          />))
+            <Route 
+              key={ route.title }
+              exact={ true }
+              path={ route.path }
+              render={ props => <route.component { ...props } /> }
+            />
+          ))
         }
         return routeList
       }, [])

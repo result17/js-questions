@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import { Layout } from 'antd'
 import MyHeader from '../MyHeader/MyHeader'
 import MySider from '../MySider/MySider'
@@ -8,13 +8,18 @@ import { RouteComponentProps } from 'react-router-dom'
 const { Header, Sider, Content } = Layout
 
 const DashBroad: FC<RouteComponentProps> = (props: RouteComponentProps) => {
+  const [collapsed, setCollapsed] = useState(false)
+  const onCollapse = (collapsed: boolean) => {
+    setCollapsed(collapsed)
+  }
+
   return (
   <Layout>
     <Header style={{ padding: '0 150px' }}>
       <MyHeader { ...props } ></MyHeader>
     </Header>
-    <Layout>
-      <Sider>
+    <Layout style={{ minHeight: 'calc(100vh - 64px)' }}>
+      <Sider width={280} collapsible collapsed={collapsed} onCollapse={onCollapse}>
         <MySider {...props}></MySider>
       </Sider>
       <Content>
