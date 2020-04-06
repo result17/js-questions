@@ -5,7 +5,6 @@ import DashBroad from '../components/DashBroad/DashBroad'
 import { Login, Regist, NotFound } from '../pages/index'
 import { RouteComponentProps } from 'react-router-dom'
 import { HomeOutlined, FileOutlined } from '@ant-design/icons';
-import { Layout } from 'antd'
 
 /* 
 isMenuItem表明此对象是否被渲染sider，

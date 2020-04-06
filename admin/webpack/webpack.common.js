@@ -65,6 +65,12 @@ module.exports = {
           outputPath: 'imgs/'
         }
       }]
+    }, {
+      test: /\.mp3$/,
+      loader: 'file-loader',
+      options: {
+        name: '[path][name].[ext]'
+      }
     }]
   },
   output: {
