@@ -1,8 +1,10 @@
 import React, { FC } from 'react'
+import RenderContentRoute from '../RenderContentRoute/RenderContentRoute'
+import { routes } from 'routes/myRoutes' 
 
 const MyContent:FC = () => {
   return (
-    <div>Main</div>
+    <RenderContentRoute routes={{ ...routes }}></RenderContentRoute>
   )
 }
 

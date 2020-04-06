@@ -35,7 +35,7 @@ const RenderContentRoute: FC<RenderContentRouteProps> = (props: RenderContentRou
   }
 
   const memo = useMemo(() => {
-    return renderContentRoute(props.routes).concat(defaultRedir('chart'))
+    return renderContentRoute(props.routes).concat(defaultRedir('/chart'))
   }, [auth.state.role])
 
   return (
