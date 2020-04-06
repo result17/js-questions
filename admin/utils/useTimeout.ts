@@ -12,7 +12,7 @@ function useTimeout(callback: ICallback, delay: number = 1000) {
       clearTimeout(id.current)
     }
     if (delay) {
-      id.current = setTimeout(callback, delay)
+      id.current = setTimeout(callback.bind(null, id), delay)
     }
     return () => {
       clearTimeout(id.current)

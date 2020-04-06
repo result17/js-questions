@@ -1,12 +1,11 @@
-import React, { FC, useState, useRef, useEffect } from 'react'
+import React, { FC, useState, useRef } from 'react'
 import cloneDeep from 'lodash/clonedeep'
 import ReactEcharts  from  'echarts-for-react'
-
-
+import { useTimeout, ICallback } from '../../utils/useTimeout'
 // https://github.com/hustcc/echarts-for-react/blob/master/demo/src/charts/Dynamic.jsx
 const initOption = {
   title: {
-    text:'My Demo',
+    text:'Echarts Demo',
   },
   tooltip: {
     trigger: 'axis'
@@ -131,12 +130,13 @@ const initOption = {
   ]
 }
 
-const Chart: FC = () => {
+const EchartsDemo: FC = () => {
   const [option, setOption] = useState(initOption)
-  const id = useRef(null)
   const count = useRef(50)
-   
-  const updataAnimate = () => {
+  const delay: number = 2000 
+
+  const updataAnimate: ICallback = (id: React.MutableRefObject<any>) => {
+    
     setOption(option => {
       const axisData = (new Date()).toLocaleTimeString().replace(/^\D*/,'')
       const newOption = cloneDeep(option)
@@ -153,18 +153,10 @@ const Chart: FC = () => {
       newOption.xAxis[1].data.push((count.current++).toString())
       return newOption
     })
-    id.current = window.setTimeout(updataAnimate, 2000)
+    id.current = window.setTimeout(updataAnimate.bind(null, id), delay)
   }
- 
-  useEffect(() => {
-    if (id.current) {
-      clearTimeout(id.current)
-    }
-    id.current = window.setTimeout(updataAnimate, 2000)
-    return () => {
-      clearTimeout(id.current)
-    }
-  }, [])
+
+  useTimeout(updataAnimate, delay)
   
   return (
     <ReactEcharts 
@@ -174,4 +166,4 @@ const Chart: FC = () => {
   )
 }
 
-export default Chart
+export default EchartsDemo

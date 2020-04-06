@@ -38,6 +38,28 @@ const NotFoundContainer: FC<RouteComponentProps> = lazy(async () => {
   return Promise.all([importPromise, delayPromise]).then(() => importPromise)
 })
 
+const EchartsDemoContainer: FC = lazy(async () => {
+  const importPromise = import('./echartsDemo/EchartsDemo')
+  const delayPromise = new Promise(res => {
+    let timer = setTimeout(() => {
+      clearTimeout(timer)
+      res()
+    }, atLeastDelayTime)
+  })
+  return Promise.all([importPromise, delayPromise]).then(() => importPromise)
+})
+
+const QuizUploadContainer: FC = lazy(async () => {
+  const importPromise = import('./quizUpload/QuizUpload')
+  const delayPromise = new Promise(res => {
+    let timer = setTimeout(() => {
+      clearTimeout(timer)
+      res()
+    }, atLeastDelayTime)
+  })
+  return Promise.all([importPromise, delayPromise]).then(() => importPromise)
+})
+
 const Login: FC<RouteComponentProps> = (props: RouteComponentProps) => {
   return (
     <>
@@ -61,11 +83,31 @@ const Regist: FC<RouteComponentProps> = (props: RouteComponentProps) => {
 const NotFound: FC<RouteComponentProps> = (props: RouteComponentProps) => {
   return (
     <>
-      <Suspense fallback= { <Fallback /> }>
+      <Suspense fallback={ <Fallback /> }>
         <NotFoundContainer {...props}/>
       </Suspense>
     </>
   )
 }
 
-export { Login, Regist, NotFound, Fallback }
+const EchartsDemo: FC = () => {
+  return (
+    <>
+      <Suspense fallback={ <Fallback /> }>
+        <EchartsDemoContainer />
+      </Suspense>
+    </>
+  )
+}
+
+const QuizUpload: FC = () => {
+  return (
+    <>
+      <Suspense fallback={ <Fallback /> }>
+        <QuizUploadContainer />
+      </Suspense>
+    </>
+  )
+}
+
+export { Login, Regist, NotFound, Fallback, EchartsDemo, QuizUpload }

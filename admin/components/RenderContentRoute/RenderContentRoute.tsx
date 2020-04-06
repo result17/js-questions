@@ -11,7 +11,7 @@ const RenderContentRoute: FC<RenderContentRouteProps> = (props: RenderContentRou
   const auth = useContext(AuthContext)
   
   const renderContentRoute = (routes: MyRoute[]) => {
-    const asyncContentRoute = routes.reduce((contentRouteList,route) => {
+    const asyncContentRoute = routes.reduce((contentRouteList, route) => {
       if (route.contextComp && route.roles && route.roles.indexOf(auth.state.role) !== -1) {
         contentRouteList.push((
           <Route
@@ -21,6 +21,9 @@ const RenderContentRoute: FC<RenderContentRouteProps> = (props: RenderContentRou
             render={ props => <route.contextComp { ...props }/>}
           />
         ))
+      }
+      if (route.subs) {
+        contentRouteList.concat(renderContentRoute(route.subs))
       }
       return contentRouteList
     }, [])
