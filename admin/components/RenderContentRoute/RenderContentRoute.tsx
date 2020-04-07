@@ -1,5 +1,5 @@
 import React, { FC, useContext, useMemo } from 'react'
-import { Switch, Route, Redirect } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import { AuthContext } from '../../components/AuthProvider/index'
 import { MyRoute } from 'routes/myRoutes'
 
@@ -9,7 +9,7 @@ interface RenderContentRouteProps {
 
 const RenderContentRoute: FC<RenderContentRouteProps> = (props: RenderContentRouteProps) => {
   const auth = useContext(AuthContext)
-  
+
   const renderContentRoute = (routes: MyRoute[]) => {
     const asyncContentRoute = routes.reduce((contentRouteList, route) => {
       if (route.contextComp && route.roles && route.roles.indexOf(auth.state.role) !== -1) {
@@ -23,19 +23,21 @@ const RenderContentRoute: FC<RenderContentRouteProps> = (props: RenderContentRou
         ))
       }
       if (route.subs) {
-        contentRouteList.concat(renderContentRoute(route.subs))
+        for (const subRoute of renderContentRoute(route.subs)) {
+          contentRouteList.push(subRoute)
+        }
       }
       return contentRouteList
     }, [])
     return asyncContentRoute
   }
  
-  const defaultRedir = (path: string) => {
-    return <Redirect from='/'  to={ path } />
-  }
+  // const defaultRedir = (path: string) => {
+  //   return <Redirect from='/'  to={ path } key='defaultRedir'/>
+  // }
 
   const memo = useMemo(() => {
-    return renderContentRoute(props.routes).concat(defaultRedir('/chart'))
+    return renderContentRoute(props.routes)
   }, [auth.state.role])
 
   return (

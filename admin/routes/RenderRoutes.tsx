@@ -27,6 +27,7 @@ const RenderRoutes: FC<RenderRoutesProps> = (props: RenderRoutesProps) => {
         }
         return routeList
       }, [])
+
       return asyncRoutes
     }, [auth.state.role])
   }

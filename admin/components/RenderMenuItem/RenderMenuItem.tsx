@@ -33,14 +33,20 @@ const RenderMenuItem: FC<RenderMenuItemProps> = (props: RenderMenuItemProps) => 
             key={ route.title }
           >  
             {
-              route.icon ? (<>
-                <route.icon></route.icon>
-                <span>
-                  <Link to={ route.path } style={{ color: "rgba(255, 255, 255, 0.65)" }}>{ route.title }</Link>
-                </span>
-              </>) : (<span>
-                <Link to={ route.path } style={{ color: "rgba(255, 255, 255, 0.65)" }}>{ route.title }</Link>
-              </span>)
+              route.icon ? (<Link 
+                to={ route.path }>
+                <div>
+                  <route.icon></route.icon>
+                    { route.title }
+                </div>
+              </Link>) : (<Link 
+                to={ route.path } 
+                >
+                <div>
+                  { route.title }
+                </div>
+                </Link>
+              )
             }
           </Menu.Item>
         ))

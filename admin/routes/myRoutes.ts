@@ -4,14 +4,14 @@ import { RedirLogin } from '../components/RedirLogin'
 import DashBroad from '../components/DashBroad/DashBroad'
 import { Login, Regist, NotFound, EchartsDemo, QuizUpload } from '../pages/index'
 import { RouteComponentProps } from 'react-router-dom'
-import { HomeOutlined, FileOutlined } from '@ant-design/icons';
+import { HomeOutlined, FileOutlined } from '@ant-design/icons'
 
 /* 
 isMenuItem表明此对象是否被渲染sider，
 icon代表是sider图标。
 */ 
 interface MyRoute {
-  path: '/login' | '/regist' | '/' | '*' | '/quizLib' | '/quizlib/upload' | '/quizlib/edit' | '/chart'
+  path: '/login' | '/regist' | '/' | '*' | '/quizLib' | '/upload' | '/edit' | '/chart'
   title: string,
   component: FC<RouteComponentProps>,
   roles: Role[],
@@ -30,7 +30,7 @@ const routes: MyRoute[] = [{
 }, {
   path: '/',
   component: DashBroad,
-  title: '首 页',
+  title: '首页',
   isMenuItem: true,
   icon: HomeOutlined,
   roles: [RoleList.admin, RoleList.root, RoleList.user]
@@ -61,14 +61,14 @@ const routes: MyRoute[] = [{
   icon: FileOutlined,
   roles: [RoleList.admin, RoleList.root],
   subs: [{
-    path: '/quizlib/upload',
+    path: '/upload',
     title: '上传题目',
     component: DashBroad,
     isMenuItem: true,
     contextComp: QuizUpload,
     roles: [RoleList.admin, RoleList.root],
   }, {
-    path: '/quizlib/edit',
+    path: '/edit',
     title: '编辑题目',
     component: DashBroad,
     isMenuItem: true,

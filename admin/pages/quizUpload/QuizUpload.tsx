@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
-import { DragUploaderProps, DragUploader } from 'components/DragUploader/DragUploader'
-import {CodeMirrorProps, CodeMirror } from 'components/CodeMirror/CodeMirror'
+import { DragUploaderProps, DragUploader } from '../../components/DragUploader/DragUploader'
+import { CodeMirrorProps, CodeMirror } from '../../components/CodeMirror/CodeMirror'
 
 const dragUploaderProps: DragUploaderProps = {
   name: 'js-questions json',

@@ -161,7 +161,7 @@ const EchartsDemo: FC = () => {
   return (
     <ReactEcharts 
       option={ option }
-      style={{ height: 600 }} 
+      style={{ height: 600, marginTop: 'calc((100vh - 64px - 600px) / 2)' }} 
     />
   )
 }
