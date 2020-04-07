@@ -11,7 +11,7 @@ isMenuItem表明此对象是否被渲染sider，
 icon代表是sider图标。
 */ 
 interface MyRoute {
-  path: '/login' | '/regist' | '/' | '*' | '/quizLib' | '/upload' | '/edit' | '/chart'
+  path: '/login' | '/regist' | '/' | '*' | '/quizlib' | '/quizlib_upload' | '/quizlib_edit' | '/chart'
   title: string,
   component: FC<RouteComponentProps>,
   roles: Role[],
@@ -54,21 +54,21 @@ const routes: MyRoute[] = [{
   isMenuItem: false,
   contextComp: EchartsDemo,
 },{
-  path: '/quizLib',
+  path: '/quizlib',
   title: '题库管理',
   component: DashBroad,
   isMenuItem: true,
   icon: FileOutlined,
   roles: [RoleList.admin, RoleList.root],
   subs: [{
-    path: '/upload',
+    path: '/quizlib_upload',
     title: '上传题目',
     component: DashBroad,
     isMenuItem: true,
     contextComp: QuizUpload,
     roles: [RoleList.admin, RoleList.root],
   }, {
-    path: '/edit',
+    path: '/quizlib_edit',
     title: '编辑题目',
     component: DashBroad,
     isMenuItem: true,

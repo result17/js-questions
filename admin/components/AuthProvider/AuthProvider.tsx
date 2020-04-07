@@ -5,7 +5,7 @@ import reducer from './reducer'
 import { useApi } from '../../utils/useApi'
 import { tokenOperations } from '../../utils/TokenOperations'
 import JWTParser from '../../utils/JWTParser'
-import notifications from '../../decarations/notifications'
+import { verifyNotifications } from '../../decarations/notifications'
 
 // 全局共享role和user，null只为了初始化，无实际意义
 const initialAuthState: AuthState = {
@@ -33,7 +33,7 @@ const AuthProvider: FC<AuthProviderProps> = (props: AuthProviderProps) => {
 
   useEffect(() => {
     if (tokenOperations.hasToken()) {
-      notifications.verifingNotification()
+      verifyNotifications.verifingNotification()
       setVeifyReqConfig({ url: props.interface })
     } else {
       dispatch({
@@ -48,7 +48,7 @@ const AuthProvider: FC<AuthProviderProps> = (props: AuthProviderProps) => {
         // 通过验证，解析token
         const jwtParser = new JWTParser(tokenOperations.getToken())
         const name = jwtParser.jwtPayload.username
-        notifications.successNotification(name)
+        verifyNotifications.successNotification(name)
         dispatch({
           type: AuthActionList.changeUser,
           role: (jwtParser.jwtPayload.role.toUpperCase()) as Role,
@@ -56,7 +56,7 @@ const AuthProvider: FC<AuthProviderProps> = (props: AuthProviderProps) => {
         })
       } else if (veifyRes.status === 401) {
         // tokenContainer.current.delToken()
-        notifications.failedNotification()
+        verifyNotifications.failedNotification()
         dispatch({
           type: AuthActionList.unAuth,
         })

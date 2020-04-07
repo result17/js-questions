@@ -1,5 +1,5 @@
 import React, { FC, useContext, useMemo } from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 import { AuthContext } from '../../components/AuthProvider/index'
 import { MyRoute } from 'routes/myRoutes'
 
@@ -32,14 +32,14 @@ const RenderContentRoute: FC<RenderContentRouteProps> = (props: RenderContentRou
     return asyncContentRoute
   }
  
-  // const defaultRedir = (path: string) => {
-  //   return <Redirect from='/'  to={ path } key='defaultRedir'/>
-  // }
+  const defaultRedir = (path: string) => {
+    return <Redirect from='/'  to={ path } key='defaultRedir'/>
+  }
 
   const memo = useMemo(() => {
-    return renderContentRoute(props.routes)
+    return renderContentRoute(props.routes).concat(defaultRedir('/chart'))
   }, [auth.state.role])
-
+  
   return (
     <Switch>
       { memo }

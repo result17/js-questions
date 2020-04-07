@@ -7,9 +7,9 @@ import { useApi } from '../../utils/useApi'
 import { tokenOperations } from '../../utils/TokenOperations'
 import { AuthContext, AuthActionList } from '../../components/AuthProvider/index'
 import JWTParser from '../../utils/JWTParser'
-import notifications from '../../decarations/notifications'
+import { verifyNotifications } from '../../decarations/notifications'
 
-import'./Login.css'
+import './Login.css'
 
 interface RouteProps {
   route: RouteComponentProps,
@@ -55,7 +55,7 @@ const LoginForm: FC<RouteProps> = (props: RouteProps) => {
       const { username, pwd } = values
       // 验证表单输入是否跟之前的输入相同
       if (username !== loginReqConfig.data.username || pwd !== loginReqConfig.data.pwd) {
-        notifications.verifingNotification()
+        verifyNotifications.verifingNotification()
         SetLoginConfig({
           ...loginReqConfig,
           data: {
@@ -77,7 +77,7 @@ const LoginForm: FC<RouteProps> = (props: RouteProps) => {
       if (loginRes.status === 200 && loginRes.data.flag === 1) {
         const jwtJson = new JWTParser(loginRes.data.token)
         const name = jwtJson.jwtPayload.username
-        notifications.successNotification(name)
+        verifyNotifications.successNotification(name)
         auth.dispatch({
           type: AuthActionList.changeUser,
           role: jwtJson.jwtPayload.role.toUpperCase(),
@@ -87,7 +87,7 @@ const LoginForm: FC<RouteProps> = (props: RouteProps) => {
         props.operator.setToken(loginRes.data.token)
         props.route.history.push('/')
       } else if (loginRes.status === 400 || loginRes.status === 401) {
-        notifications.failedNotification()
+        verifyNotifications.failedNotification()
       }
     } 
   }, [loginRes])

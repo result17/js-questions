@@ -1,24 +1,33 @@
 import React, { FC } from 'react'
-import { DragUploaderProps, DragUploader } from '../../components/DragUploader/DragUploader'
 import { CodeMirrorProps, CodeMirror } from '../../components/CodeMirror/CodeMirror'
+import { MyUploaderProps, MyUploader } from '../../components/MyUploader/MyUploader'
+import jsonDemo from './jsonDemo'
+import UploadDoc from './UploadDoc'
+import { UploadNotifications } from '../../decarations/notifications'
 
-const dragUploaderProps: DragUploaderProps = {
-  name: 'js-questions json',
-  multiple: false,
-  action: '/uploadJson',
-  onChange(info) {
-    const { status } = info.file
-    if (status === 'uploading') {
-      // 
-    } else if (status === 'error') {
-      // 
-    } else if (status === 'done') {
-      // 
+// 覆盖原有的code mirror样式
+import './QuizUpload.css'
+
+const myUploaderProps: MyUploaderProps = {
+  text: '上传json',
+  props: {
+    name: 'js-questions json',
+    multiple: false,
+    action: '/uploadJson',
+    accept: '.json',
+    onChange(info) {
+      const { status } = info.file
+      if (status === 'uploading') {
+        UploadNotifications.uploadingNotification()
+      } else if (status === 'error') {
+        UploadNotifications.errorNotification()
+      } else if (status === 'done') {
+        UploadNotifications.checkingNotification()
+      }
     }
   }
 }
 
-const jsonDemo = '{"data":{"questions":[{"id":"1","code":"console.log(\'hello world!\')","title":"Hello World!","option":[{"text":"a","correct":false,"__typename":"Option"},{"text":"b","correct":false,"__typename":"Option"},{"text":"c","correct":true,"__typename":"Option"},{"text":"d","correct":false,"__typename":"Option"}],"explanation":"Hello World!","__typename":"Question"}]}}'
 
 const codeMirrorProps: CodeMirrorProps = {
   value: jsonDemo,
@@ -26,16 +35,23 @@ const codeMirrorProps: CodeMirrorProps = {
     mode: 'javascript',
     theme: 'material',
     lineNumbers: true,
-    readOnly: true
+    readOnly: true,
   }
 } 
 
 const QuizUpload: FC = () => {
   return(
-    <>
-      <CodeMirror { ...codeMirrorProps }></CodeMirror>
-      <DragUploader { ...dragUploaderProps }></DragUploader>
-    </>
+    <div style={{ margin: '30px 30px 0', height: 'calc(100vh - 64px)'}}>
+      <UploadDoc></UploadDoc>
+      <div>
+        <div style={{ display: 'inline-block', width: '60%', verticalAlign: 'top'}}>
+          <CodeMirror { ...codeMirrorProps }></CodeMirror>
+        </div>
+        <div style={{ display: 'inline-block', marginLeft: '50px' }}>
+          <MyUploader { ...myUploaderProps }></MyUploader>
+        </div>
+      </div>
+    </div>
   )
 }
 

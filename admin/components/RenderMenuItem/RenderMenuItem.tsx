@@ -37,13 +37,13 @@ const RenderMenuItem: FC<RenderMenuItemProps> = (props: RenderMenuItemProps) => 
                 to={ route.path }>
                 <div>
                   <route.icon></route.icon>
-                    { route.title }
+                  <span>{ route.title }</span>
                 </div>
               </Link>) : (<Link 
                 to={ route.path } 
                 >
                 <div>
-                  { route.title }
+                  <span>{ route.title }</span>
                 </div>
                 </Link>
               )
