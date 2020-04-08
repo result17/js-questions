@@ -36,7 +36,7 @@ class ManagerOperate extends DbOperate {
     // 不再在此捕获错误，应该调用函数时捕获
     if (this.connection && this.curDb === this.db) {
       // 插入到manager_info(现在只开放type=1的用户进行注册), 
-      await this.connection.promise().query(`INSERT INTO ?? VALUES ( ?, ?, ?, ?, ?);`, [`${this.tableName}_info`, null, manager.name,  1,  manager.github, moment().format('YYYY-MM-DD hh:mm:ss')]).then(() => {
+      await this.connection.promise().query(`INSERT INTO ?? VALUES ( ?, ?, ?, ?, ?);`, [`${this.tableName}_info`, null, manager.name,  1,  manager.github, moment().format('YYYY-MM-DD HH:mm:ss')]).then(() => {
         console.log(`${this.tableName} inserted, add ${manager.name} in manager table!`)
       }).catch(err => {
         throw err
