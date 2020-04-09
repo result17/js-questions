@@ -4,6 +4,7 @@ import { RouteComponentProps } from 'react-router-dom'
 import DropdownMenu from '../DropdownMenu/DropdownMenu'
 
 const logoProps: LogoProps =  {
+  display: 'inline-block',
   width: '48px',
   height: '48px',
   bgMargin: '8px 0px 8px',
@@ -23,6 +24,7 @@ const MyHeader:FC<RouteComponentProps> = (props: RouteComponentProps) => {
     <>
       <div style={{ float: 'left' }}>
         <Logo { ...logoProps }></Logo>
+        <span style={{ fontFamily: '\'Roboto\', sans-serif', fontSize: '18px', marginLeft: '20px', color: '#fff'}}>JS-quiz</span>
       </div>
       <div style={{ float: 'right' }}>
         <DropdownMenu {...props}></DropdownMenu>

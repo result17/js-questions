@@ -13,4 +13,8 @@ enum HttpCode {
   OK = 200,
 }
 
-export { JSTypes, HttpCode }
+enum FileType {
+  json = 'application.json'
+}
+
+export { JSTypes, HttpCode, FileType }

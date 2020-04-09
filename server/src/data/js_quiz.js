@@ -1,4 +1,4 @@
-export default [
+ const data = [
   {
     "id": 1,
     "title": "1. 输出是什么？",
@@ -3432,3 +3432,7 @@ export default [
     "explanation": "对象默认并不是可迭代的。如果迭代规则被定义，则一个对象是可迭代的（An iterable is an iterable if the iterator protocol is present）。我们可以通过添加迭代器symbol `[Symbol.iterator]` 来定义迭代规则，其返回一个 generator 对象，比如说构建一个 generator 函数 `*[Symbol.iterator]() {}`。如果我们想要返回数组 `[\"Lydia Hallie\", 21]`: `yield* Object.values(this)`，这个 generator 函数一定要 yield 对象 `person` 的`Object.values`。"
   }
 ]
+
+console.log(data.length)
+
+// export default data

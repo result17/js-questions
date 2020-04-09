@@ -6,31 +6,31 @@ const jsonDemo = `/* 请依照此示例和上面的说明，
     "questions": [
       {
         "id": "1",
-        "code": "console.log('hello world!')",
-        "title": "Hello World!",
+        "title": "1. 输出是什么",
+        "code": "function sayHi() {} sayHi()",
         "options": [
           {
-            "text": "a",
+            "text": "\`Lydia\` 和 \`undefined\`",
             "correct": false,
             "__typename": "Option"
           },
           {
-            "text": "b",
+            "text": "\`Lydia\` 和 \`ReferenceError\`",
             "correct": false,
             "__typename": "Option"
           },
           {
-            "text": "c",
+            "text": "\`ReferenceError\` 和 \`21\`",
             "correct": true,
             "__typename": "Option"
           },
           {
-            "text": "d",
+            "text": "\`undefined\` 和 \`ReferenceError\`",
             "correct": false,
             "__typename": "Option"
           }
         ],
-        "explanation": "Hello World!",
+        "explanation": "在函数内部，我们首先通过 \`var\` 关键字声明了 \`name\` 变量......",
         "__typename": "Question"
       }
     ]

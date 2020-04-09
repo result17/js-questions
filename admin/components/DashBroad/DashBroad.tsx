@@ -15,7 +15,7 @@ const DashBroad: FC<RouteComponentProps> = (props: RouteComponentProps) => {
 
   return (
   <Layout>
-    <Header style={{ padding: '0 150px' }}>
+    <Header style={{ padding: '0 150px 0 50px' }}>
       <MyHeader { ...props } ></MyHeader>
     </Header>
     <Layout style={{ minHeight: 'calc(100vh - 64px)' }}>

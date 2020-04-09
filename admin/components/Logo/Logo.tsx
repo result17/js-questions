@@ -2,6 +2,7 @@ import React, { FC } from 'react'
 import { FloatProperty, TextAlignProperty, UserSelectProperty } from 'csstype'
 
 interface LogoProps {
+  display?: string,
   float?: FloatProperty,
   width?: string,
   height?: string,
@@ -22,6 +23,7 @@ interface LogoProps {
 const Logo: FC<LogoProps> = (props: LogoProps) => {
   return (
     <div style={{ 
+      display: props.display,
       background: props.background, 
       float: props.float,
       width: props.width,

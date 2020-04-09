@@ -9,6 +9,7 @@
 - 侧边栏虽路由状态变化。
 - 后端对于上传文件file type验证。
 - 将后端json校验方式改为json schema。
+- 后端检验风格改为面向对象。
 
 ## refence
 - [jwt 实践以及与session对比](https://juejin.im/post/5b532492e51d455d6825c0cc#heading-2)

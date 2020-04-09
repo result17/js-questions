@@ -10,11 +10,12 @@ interface parseMD2Obj {
   title: string,
   code: string,
   options: string,
-  explanation: string
+  explanation: string,
+  __typename: 'Question'
 }
 
 interface parsedData {
-  id: number,
+  id: string,
   title: string,
   code: string,
   options: string,
@@ -49,7 +50,7 @@ abstract class ScrapeMD {
     let questions: string[] = text.split(this.reg.QUESTIONS_RE).slice(1)
     text = null
     const data: parsedData[] = questions.map((question, i) => {
-      return {id: i + 1, ...this.getData(question)}
+      return {id: (i + 1).toString(), ...this.getData(question)}
     })
     return data
   }
@@ -75,8 +76,9 @@ abstract class ScrapeMD {
         .trim()
       
       return {
+        text: rawQuestion,
         correct: this.optionsAry.indexOf(answer) === i,
-        text: rawQuestion
+        __typename: 'Option'
       }
     })
 
@@ -89,7 +91,8 @@ abstract class ScrapeMD {
       title,
       code,
       options,
-      explanation
+      explanation,
+      __typename: 'Question'
     }
   }
 }

@@ -1,4 +1,3 @@
-import * as path from 'path'
 import * as Router from 'koa-router'
 import { init_mysql_config } from '../config/mysql_config'
 import { ManagerOperate, DataContainer } from '../utils/ManagerOperate' 

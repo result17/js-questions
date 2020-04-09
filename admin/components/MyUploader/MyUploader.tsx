@@ -2,12 +2,32 @@ import React, { FC } from 'react'
 import { Upload, Button } from 'antd'
 import { UploadOutlined } from '@ant-design/icons'
 
-interface UploaderProps {
+interface UploaderPropsData {
   name: string,
-  multiple: boolean,
   action: string,
+}
+
+// antd/lib/upload/interface.d.ts
+interface RcCustomRequestOptions {
+  onProgress: (event: {
+      percent: number,
+  }, file: File) => void,
+  onError: (error: Error) => void,
+  onSuccess: (response: object, file: File) => void,
+  data: UploaderPropsData,
+  filename: string,
+  file: File,
+  withCredentials: boolean,
+  action: string,
+  headers: object,
+}
+
+interface UploaderProps {
+  multiple: boolean,
   accept: string,
-  onChange: (info: any) => void
+  data: UploaderPropsData,
+  onChange: (info: any) => void,
+  customRequest?: (options: RcCustomRequestOptions) => void
 }
 
 interface MyUploaderProps {

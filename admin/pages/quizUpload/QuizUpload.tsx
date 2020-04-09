@@ -4,6 +4,7 @@ import { MyUploaderProps, MyUploader } from '../../components/MyUploader/MyUploa
 import jsonDemo from './jsonDemo'
 import UploadDoc from './UploadDoc'
 import { UploadNotifications } from '../../decarations/notifications'
+import instance from '../../utils/createAxiosInst'
 
 // 覆盖原有的code mirror样式
 import './QuizUpload.css'
@@ -11,10 +12,12 @@ import './QuizUpload.css'
 const myUploaderProps: MyUploaderProps = {
   text: '上传json',
   props: {
-    name: 'js-questions json',
     multiple: false,
-    action: '/uploadJson',
     accept: '.json',
+    data: {
+      name: 'js-questions-json',
+      action: '/uploadData',
+    },
     onChange(info) {
       const { status } = info.file
       if (status === 'uploading') {
@@ -24,6 +27,12 @@ const myUploaderProps: MyUploaderProps = {
       } else if (status === 'done') {
         UploadNotifications.checkingNotification()
       }
+    },
+    customRequest(options) {
+      // instance
+      const formData = new FormData()
+      formData.append(options.data.name, options.file)
+      instance.post(options.data.action, formData).catch(e => console.error(e))
     }
   }
 }
