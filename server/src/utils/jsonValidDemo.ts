@@ -2,8 +2,11 @@ import * as Joi from '@hapi/joi'
 
 const test = {
   data: {
+    name: 'js-quiz',
+    author: 'result17',
+    lever: 'easy',
     questions: [{
-      id: '1',
+      id: 1,
       title: '1. 输出是什么？',
       code: "function sayHi() {\r\n  console.log(name)\r\n  console.log(age)\r\n  var name = 'Lydia'\r\n  let age = 21\r\n}\r\n\r\nsayHi()\r\n",
       options: [{
@@ -26,7 +29,7 @@ const test = {
       explanation: "在函数内部，我们首先通过 `var` 关键字声明了 `name` 变量。这意味着变量被提升了（内存空间在创建阶段就被设置好了），直到程序运行到定义变量位置之前默认值都是 `undefined`。因为当我们打印 `name` 变量时还没有执行到定义变量的位置，因此变量的值保持为 `undefined`。\r\n\r\n通过 `let` 和 `const` 关键字声明的变量也会提升，但是和 `var` 不同，它们不会被<i>初始化</i>。在我们声明（初始化）之前是不能访问它们的。这个行为被称之为暂时性死区。当我们试图在声明之前访问它们时，JavaScript 将会抛出一个 `ReferenceError` 错误。",
       __typename: 'Question'
     }, {
-      id: "2",
+      id: 2,
       title: "2. 输出是什么？",
       code: "for (var i = 0; i < 3; i++) {\r\n  setTimeout(() => console.log(i), 1)\r\n}\r\n\r\nfor (let i = 0; i < 3; i++) {\r\n  setTimeout(() => console.log(i), 1)\r\n}\r\n",
       options: [
@@ -53,24 +56,43 @@ const test = {
 }
 
 try {
-  const schema = Joi.object({
+  const questionSchema = Joi.object().keys({
     data: Joi.object({
+      name: Joi.string().empty().required(),
+      author: Joi.string().empty().required(),
+      lever: Joi.string().valid('easy', 'medium', 'diffcult').required(),
       questions: Joi.array().max(300).items(Joi.object({
-        id: Joi.string().regex(/^\d+$/).max(3),
-        title: Joi.string().empty(),
-        code: Joi.string(),
+        id: Joi.number().prefs({ convert: false }).positive().max(300).required(),
+        title: Joi.string().empty().required(),
+        code: Joi.string().required(),
         options: Joi.array().max(4).items(Joi.object({
-          text: Joi.string().empty(),
-          correct: Joi.boolean(),
-          __typename: Joi.string().valid('Option')
+          text: Joi.string().empty().required(),
+          correct: Joi.boolean().empty().required(),
+          __typename: Joi.string().valid('Option').required()
         })),
-        explanation: Joi.string().empty(),
-        __typename: Joi.string().valid('Question')
+        explanation: Joi.string().empty().required(),
+        __typename: Joi.string().valid('Question').required()
       }))
-    })
+    }).required()
   })
-  Joi.assert(test, schema)
+  Joi.assert(test, questionSchema)
 } catch(e) {
   console.log(e.name)
 }
 
+// const schema = Joi.object({
+//   // 巨坑，joi默认将字符串转为数字类型
+//   id: Joi.number().prefs({ convert: false }).positive().max(300).required(),
+//   title: Joi.string().required().empty(),
+//   code: Joi.string().required(),
+//   explanation: Joi.string().empty().required(),
+//   __typename: Joi.string().valid('Question').required()
+// })
+
+// Joi.assert({
+//   id: '1',
+//   title: '1. 输出是什么？',
+//   code: "function sayHi() {\r\n  console.log(name)\r\n  console.log(age)\r\n  var name = 'Lydia'\r\n  let age = 21\r\n}\r\n\r\nsayHi()\r\n",
+//   explanation: "在函数内部，我们首先通过 `var` 关键字声明了 `name` 变量。这意味着变量被提升了（内存空间在创建阶段就被设置好了），直到程序运行到定义变量位置之前默认值都是 `undefined`。因为当我们打印 `name` 变量时还没有执行到定义变量的位置，因此变量的值保持为 `undefined`。\r\n\r\n通过 `let` 和 `const` 关键字声明的变量也会提升，但是和 `var` 不同，它们不会被<i>初始化</i>。在我们声明（初始化）之前是不能访问它们的。这个行为被称之为暂时性死区。当我们试图在声明之前访问它们时，JavaScript 将会抛出一个 `ReferenceError` 错误。",
+//   __typename: 'Question'
+// }, schema)

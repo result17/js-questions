@@ -14,7 +14,7 @@ enum HttpCode {
 }
 
 enum FileType {
-  json = 'application.json'
+  json = 'application/json'
 }
 
 export { JSTypes, HttpCode, FileType }

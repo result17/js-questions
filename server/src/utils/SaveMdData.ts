@@ -15,7 +15,7 @@ class SaveMdData extends ScrapeMD {
     this.jsPath = option.jsPath
     this.jsonPath = option.jsonPath
   }
-  async saveInjs() {
+  async saveInJs() {
     if (this.jsPath) {
       const data = await this.fetchMD()
       try {
@@ -40,7 +40,7 @@ class SaveMdData extends ScrapeMD {
         fs.writeFile(this.jsonPath, 
           `{
             "data": {
-              "questions": ${JSON.stringify(data, null, 2)}
+              "questions":     ${JSON.stringify(data, null, 2)}
             }
           }`, 
           err => {
@@ -68,4 +68,4 @@ const main = async () => {
 }
 main()
 
-// export { SaveOption, SaveMdData }
+export { SaveOption, SaveMdData }

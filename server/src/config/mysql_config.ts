@@ -25,9 +25,9 @@ const user_info_table = `CREATE TABLE IF NOT EXISTS user_info(
                         );`
 
 const user_password_table = `CREATE TABLE IF NOT EXISTS user_password(
-                              user_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-                              password VARCHAR(255) NOT NULL,
-                              salt VARCHAR(255) NOT NULL
+                               user_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+                               password VARCHAR(255) NOT NULL,
+                               salt VARCHAR(255) NOT NULL
                             );`
 
 const manager_info_table = `CREATE TABLE IF NOT EXISTS manager_info(
@@ -39,9 +39,19 @@ const manager_info_table = `CREATE TABLE IF NOT EXISTS manager_info(
                            );`
 
 const manager_mix_table = `CREATE TABLE IF NOT EXISTS manager_mix(
-                                 manager_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-                                 mix VARCHAR(255) NOT NULL,
-                                 salt VARCHAR(255) NOT NULL
-                               );`
+                             manager_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+                             mix VARCHAR(255) NOT NULL,
+                             salt VARCHAR(255) NOT NULL
+                          );`
 
-export { Mysql_config, init_mysql_config, user_info_table, user_password_table, manager_info_table, manager_mix_table }
+const questions_table = `CREATE TABLE IF NOT EXISTS questions(
+                           id int NOT Null PRIMARY KEY AUTO_INCREMENT,
+                           name VARCHAR(255) NOT NULL,
+                           author VARCHAR(50) NOT NULL,
+                           lever VARCHAR(50) NOT NULL,
+                           create_at datetime NOT NULL DEFAULT NOW(),
+                           update_at datetime NOT NULL DEFAULT NOW(),
+                           questions JSON NOT NULL,
+                        )`           
+
+export { Mysql_config, init_mysql_config, user_info_table, user_password_table, manager_info_table, manager_mix_table, questions_table }

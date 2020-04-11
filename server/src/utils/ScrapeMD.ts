@@ -15,7 +15,7 @@ interface parseMD2Obj {
 }
 
 interface parsedData {
-  id: string,
+  id: number,
   title: string,
   code: string,
   options: string,
@@ -34,7 +34,7 @@ abstract class ScrapeMD {
     START_CODE_BLOCK_RE: /```[a-z]/g,
     END_CODE_BLOCK_RE: /```\r\n/g,
     OPTION_RE: /-(\s+\w+:.*)/g,
-    TITLE_RE: /###### /,
+    TITLE_RE: /###### \d+\. /,
     ANSWER_RE: /#### 答案: /,
   }
   constructor(option: ScrapeMDOption) {
@@ -50,7 +50,7 @@ abstract class ScrapeMD {
     let questions: string[] = text.split(this.reg.QUESTIONS_RE).slice(1)
     text = null
     const data: parsedData[] = questions.map((question, i) => {
-      return {id: (i + 1).toString(), ...this.getData(question)}
+      return { id: i + 1, ...this.getData(question) }
     })
     return data
   }

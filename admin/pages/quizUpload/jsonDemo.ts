@@ -3,10 +3,13 @@ const jsonDemo = `/* 请依照此示例和上面的说明，
 */
 {
   "data": {
+    "name": "js-quiz中文版",
+    "author": "result17",
+    "lever": "medium",
     "questions": [
       {
-        "id": "1",
-        "title": "1. 输出是什么",
+        "id": 1,
+        "title": "输出是什么",
         "code": "function sayHi() {} sayHi()",
         "options": [
           {

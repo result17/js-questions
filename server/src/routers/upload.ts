@@ -14,21 +14,45 @@ const uploadRouter = new Router()
 
 uploadRouter.post('/uploadData', async (ctx, next) => {
   const file = Object.values(ctx.request.files)[0]
-  // const { name, type, size } = file
-  // if (type === FileType.json &&fileNameCheck(name, 'json')) {
-  //   handleJsonUpload(file)
-  // } else {
-  //   const res: UploadRes = {
-  //     flag: 0,
-  //     msg: 'filename error!',
-  //     isFileNameMatch: false,
-  //     isFileContextMatch: false,
-  //   }
-  //   ctx.response.body = res
-  //   ctx.response.status = HttpCode.BADREQUEST
-  //   next()
-  //   return 
-  // }
+  const { name, type, size, path } = file
+  console.log(name, type)
+  if (type === FileType.json && fileNameCheck(name, 'json')) {
+    const flag = await handleJsonUpload(path)
+    if (flag) {
+      const res: UploadRes = {
+        flag: 1,
+        msg: 'Add question!',
+        isFileNameMatch: true,
+        isFileContextMatch: true,
+      }
+      ctx.response.body = res
+      ctx.response.status = HttpCode.OK
+      next()
+      return
+    } else {
+      const res: UploadRes = {
+        flag: 0,
+        msg: 'filecontext error!',
+        isFileNameMatch: true,
+        isFileContextMatch: false,
+      }
+      ctx.response.body = res
+      ctx.response.status = HttpCode.BADREQUEST
+      next()
+      return
+    }
+  } else {
+    const res: UploadRes = {
+      flag: 0,
+      msg: 'filename error!',
+      isFileNameMatch: false,
+      isFileContextMatch: false,
+    }
+    ctx.response.body = res
+    ctx.response.status = HttpCode.BADREQUEST
+    next()
+    return 
+  }
 })
 
 export { uploadRouter }

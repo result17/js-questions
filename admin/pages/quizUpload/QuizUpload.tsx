@@ -22,17 +22,18 @@ const myUploaderProps: MyUploaderProps = {
       const { status } = info.file
       if (status === 'uploading') {
         UploadNotifications.uploadingNotification()
-      } else if (status === 'error') {
-        UploadNotifications.errorNotification()
-      } else if (status === 'done') {
-        UploadNotifications.checkingNotification()
-      }
+      } 
     },
     customRequest(options) {
       // instance
       const formData = new FormData()
       formData.append(options.data.name, options.file)
-      instance.post(options.data.action, formData).catch(e => console.error(e))
+      instance.post(options.data.action, formData).then(() => {
+        UploadNotifications.successNotification()
+      }).catch(e => {
+        console.error(e)
+        UploadNotifications.errorNotification()
+      })
     }
   }
 }
