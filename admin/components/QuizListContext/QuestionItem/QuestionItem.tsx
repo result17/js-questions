@@ -5,6 +5,7 @@ import QuestionCode from '../QuestionCode/QuestionCode'
 import QuestionOptions from '../QuestionOptions/QuestionOptions'
 import QuestionExplanation from '../QuestionExplanation/QuestionExplanation'
 import questionReducer from '../reducer'
+import { Divider } from 'antd'
 
 import './QuestionItem.css'
 
@@ -38,6 +39,7 @@ const QuestionItem: FC<QuestionItemProps> = (props: QuestionItemProps) => {
         chosen={ state.hasChosen }
         text={ props.data.explanation }
       ></QuestionExplanation>
+      <Divider className="divider-wrapper"/>
     </div>
   )
 }
