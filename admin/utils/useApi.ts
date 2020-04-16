@@ -4,12 +4,13 @@ import instance from './createAxiosInst'
 
 function useApi(config: AxiosRequestConfig, willMountReq: Boolean = false): AxiosResponse {
   const source: CancelTokenSource = axios.CancelToken.source()
-  config.cancelToken = source.token
+  // 不能直接修改config，浅拷贝config（非修改config则可）
+  const axiosConfig = { ...config, cancelToken: source.token }
   const isMount = useRef(willMountReq)
   const [res, setRes] = useState(null)
   const loginReq = useCallback(async () => {
     try {
-      const response: AxiosResponse = await instance(config)
+      const response: AxiosResponse = await instance(axiosConfig)
       setRes(response)
     } catch (e) {
       setRes({

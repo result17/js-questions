@@ -75,6 +75,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, '..', 'output'),
+    publicPath: '/',
     filename: devMode ? '[name].[hash:8].js' : '[name].[chunkhash:8].js',
     chunkFilename: devMode ? '[name].[hash:8].js' : '[name].[chunkhash:8].js',
   },

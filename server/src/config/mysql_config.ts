@@ -48,7 +48,7 @@ const questions_table = `CREATE TABLE IF NOT EXISTS questions(
                            id int NOT Null PRIMARY KEY AUTO_INCREMENT,
                            name VARCHAR(255) NOT NULL,
                            author VARCHAR(50) NOT NULL,
-                           lever VARCHAR(50) NOT NULL,
+                           level VARCHAR(50) NOT NULL,
                            create_at datetime NOT NULL DEFAULT NOW(),
                            update_at datetime NOT NULL DEFAULT NOW(),
                            questions JSON NOT NULL,

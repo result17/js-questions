@@ -1,6 +1,6 @@
 import React, { createContext, FC, useReducer, useEffect, useState } from 'react'
 import { AxiosRequestConfig, AxiosResponse } from 'axios'
-import { AuthProviderProps, AuthState, RoleList, AuthActionList, Role } from './type'
+import { AuthProviderProps, AuthState, RoleList, AuthActionList, Role } from './types'
 import reducer from './reducer'
 import { useApi } from '../../utils/useApi'
 import { tokenOperations } from '../../utils/TokenOperations'
@@ -72,4 +72,3 @@ const AuthProvider: FC<AuthProviderProps> = (props: AuthProviderProps) => {
 }
 
 export  { AuthProvider, AuthContext }
-

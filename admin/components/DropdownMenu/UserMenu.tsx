@@ -2,7 +2,7 @@ import React, { FC, useContext } from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 import { Menu } from 'antd'
 import { AuthContext } from '../AuthProvider/index'
-import { AuthActionList } from '../AuthProvider/type'
+import { AuthActionList } from '../AuthProvider/types'
 import { tokenOperations } from '../../utils/TokenOperations'
 
 const UserMenu: FC<RouteComponentProps> = (props: RouteComponentProps) => {

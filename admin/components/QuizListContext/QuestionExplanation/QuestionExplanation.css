@@ -1,0 +1,11 @@
+.exp-wrapper {
+  display: inline-block;
+  vertical-align: top;
+  width: 30%;
+  margin: 0 5%;
+}
+
+.panel-wrapper {
+  max-height: 340px !important;
+  overflow-y: scroll !important;
+}

@@ -18,7 +18,7 @@ const RenderContentRoute: FC<RenderContentRouteProps> = (props: RenderContentRou
             key={ route.title }
             exact={ true }
             path={ route.path }
-            render={ props => <route.contextComp { ...props }/>}
+            render={ props => <route.contextComp { ...props }/> }
           />
         ))
       }
@@ -39,7 +39,7 @@ const RenderContentRoute: FC<RenderContentRouteProps> = (props: RenderContentRou
   const memo = useMemo(() => {
     return renderContentRoute(props.routes).concat(defaultRedir('/chart'))
   }, [auth.state.role])
-  
+
   return (
     <Switch>
       { memo }

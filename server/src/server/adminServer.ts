@@ -7,6 +7,8 @@ import { loginRouter } from '../routers/login'
 import { registRouter } from '../routers/regist'
 import { veifyRouter } from '../routers/veify'
 import { uploadRouter } from '../routers/upload'
+import { questionInfoRouter } from '../routers/questionInfo'
+import { questionDataRouter } from '../routers/questionData'
 
 const admin = new Koa()
 
@@ -27,5 +29,7 @@ admin.use(loginRouter.routes())
 admin.use(registRouter.routes())
 admin.use(veifyRouter.routes())
 admin.use(uploadRouter.routes())
+admin.use(questionInfoRouter.routes())
+admin.use(questionDataRouter.routes())
 
 export { admin }

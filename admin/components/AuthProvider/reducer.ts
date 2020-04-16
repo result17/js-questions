@@ -1,4 +1,4 @@
-import { AuthState, AuthAction, AuthActionList, RoleList } from './type'
+import { AuthState, AuthAction, AuthActionList, RoleList } from './types'
 
 function reducer(state: AuthState, action: AuthAction): AuthState {
   switch (action.type) {

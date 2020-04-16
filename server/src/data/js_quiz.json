@@ -2,10 +2,11 @@
   "data": {
     "name": "js-quiz中文版",
     "author": "result17",
-    "lever": "medium",
+    "level": "medium",
     "questions": [
       {
         "id": 1,
+        "isFormal": true,
         "title": "输出是什么？",
         "code": "function sayHi() {\r\n  console.log(name)\r\n  console.log(age)\r\n  var name = 'Lydia'\r\n  let age = 21\r\n}\r\n\r\nsayHi()\r\n",
         "options": [
@@ -35,6 +36,7 @@
       },
       {
         "id": 2,
+        "isFormal": true,
         "title": "输出是什么？",
         "code": "for (var i = 0; i < 3; i++) {\r\n  setTimeout(() => console.log(i), 1)\r\n}\r\n\r\nfor (let i = 0; i < 3; i++) {\r\n  setTimeout(() => console.log(i), 1)\r\n}\r\n",
         "options": [
@@ -59,6 +61,7 @@
       },
       {
         "id": 3,
+        "isFormal": true,
         "title": "输出是什么？",
         "code": "const shape = {\r\n  radius: 10,\r\n  diameter() {\r\n    return this.radius * 2\r\n  },\r\n  perimeter: () => 2 * Math.PI * this.radius\r\n}\r\n\r\nshape.diameter()\r\nshape.perimeter()\r\n",
         "options": [
@@ -88,6 +91,7 @@
       },
       {
         "id": 4,
+        "isFormal": true,
         "title": "输出是什么？",
         "code": "+true;\r\n!\"Lydia\";\r\n",
         "options": [
@@ -112,6 +116,7 @@
       },
       {
         "id": 5,
+        "isFormal": true,
         "title": "哪一个是正确的？",
         "code": "const bird = {\r\n  size: 'small'\r\n}\r\n\r\nconst mouse = {\r\n  name: 'Mickey',\r\n  small: true\r\n}\r\n",
         "options": [
@@ -141,6 +146,7 @@
       },
       {
         "id": 6,
+        "isFormal": true,
         "title": "输出是什么？",
         "code": "let c = { greeting: 'Hey!' }\r\nlet d\r\n\r\nd = c\r\nc.greeting = 'Hello'\r\nconsole.log(d.greeting)\r\n",
         "options": [
@@ -170,6 +176,7 @@
       },
       {
         "id": 7,
+        "isFormal": true,
         "title": "输出是什么？",
         "code": "let a = 3\r\nlet b = new Number(3)\r\nlet c = 3\r\n\r\nconsole.log(a == b)\r\nconsole.log(a === b)\r\nconsole.log(b === c)\r\n",
         "options": [
@@ -199,6 +206,7 @@
       },
       {
         "id": 8,
+        "isFormal": true,
         "title": "输出是什么？",
         "code": "class Chameleon {\r\n  static colorChange(newColor) {\r\n    this.newColor = newColor\r\n    return this.newColor\r\n  }\r\n\r\n  constructor({ newColor = 'green' } = {}) {\r\n    this.newColor = newColor\r\n  }\r\n}\r\n\r\nconst freddie = new Chameleon({ newColor: 'purple' })\r\nfreddie.colorChange('orange')\r\n",
         "options": [
@@ -228,6 +236,7 @@
       },
       {
         "id": 9,
+        "isFormal": true,
         "title": "输出是什么？",
         "code": "let greeting\r\ngreetign = {} // Typo!\r\nconsole.log(greetign)\r\n",
         "options": [
@@ -252,6 +261,7 @@
       },
       {
         "id": 10,
+        "isFormal": true,
         "title": "当我们这么做时，会发生什么？",
         "code": "function bark() {\r\n  console.log('Woof!')\r\n}\r\n\r\nbark.animal = 'dog'\r\n",
         "options": [
@@ -281,6 +291,7 @@
       },
       {
         "id": 11,
+        "isFormal": true,
         "title": "输出是什么？",
         "code": "function Person(firstName, lastName) {\r\n  this.firstName = firstName;\r\n  this.lastName = lastName;\r\n}\r\n\r\nconst member = new Person(\"Lydia\", \"Hallie\");\r\nPerson.getFullName = function () {\r\n  return `${this.firstName} ${this.lastName}`;\r\n}\r\n\r\nconsole.log(member.getFullName());\r\n",
         "options": [
@@ -310,6 +321,7 @@
       },
       {
         "id": 12,
+        "isFormal": true,
         "title": "输出是什么？",
         "code": "function Person(firstName, lastName) {\r\n  this.firstName = firstName\r\n  this.lastName = lastName\r\n}\r\n\r\nconst lydia = new Person('Lydia', 'Hallie')\r\nconst sarah = Person('Sarah', 'Smith')\r\n\r\nconsole.log(lydia)\r\nconsole.log(sarah)\r\n",
         "options": [
@@ -339,6 +351,7 @@
       },
       {
         "id": 13,
+        "isFormal": true,
         "title": "事件传播的三个阶段是什么？",
         "code": "\r\n\r\n###### 13.",
         "options": [
@@ -368,6 +381,7 @@
       },
       {
         "id": 14,
+        "isFormal": true,
         "title": "所有对象都有原型。",
         "code": "\r\n\r\n###### 14.",
         "options": [
@@ -387,6 +401,7 @@
       },
       {
         "id": 15,
+        "isFormal": true,
         "title": "输出是什么？",
         "code": "function sum(a, b) {\r\n  return a + b\r\n}\r\n\r\nsum(1, '2')\r\n",
         "options": [
@@ -416,6 +431,7 @@
       },
       {
         "id": 16,
+        "isFormal": true,
         "title": "输出是什么？",
         "code": "let number = 0\r\nconsole.log(number++)\r\nconsole.log(++number)\r\nconsole.log(number)\r\n",
         "options": [
@@ -445,6 +461,7 @@
       },
       {
         "id": 17,
+        "isFormal": true,
         "title": "输出是什么？",
         "code": "function getPersonInfo(one, two, three) {\r\n  console.log(one)\r\n  console.log(two)\r\n  console.log(three)\r\n}\r\n\r\nconst person = 'Lydia'\r\nconst age = 21\r\n\r\ngetPersonInfo`${person} is ${age} years old`\r\n",
         "options": [
@@ -469,6 +486,7 @@
       },
       {
         "id": 18,
+        "isFormal": true,
         "title": "输出是什么？",
         "code": "function checkAge(data) {\r\n  if (data === { age: 18 }) {\r\n    console.log('You are an adult!')\r\n  } else if (data == { age: 18 }) {\r\n    console.log('You are still an adult.')\r\n  } else {\r\n    console.log(`Hmm.. You don't have an age I guess`)\r\n  }\r\n}\r\n\r\ncheckAge({ age: 18 })\r\n",
         "options": [
@@ -493,6 +511,7 @@
       },
       {
         "id": 19,
+        "isFormal": true,
         "title": "输出是什么？",
         "code": "function getAge(...args) {\r\n  console.log(typeof args)\r\n}\r\n\r\ngetAge(21)\r\n",
         "options": [
@@ -522,6 +541,7 @@
       },
       {
         "id": 20,
+        "isFormal": true,
         "title": "输出是什么？",
         "code": "function getAge() {\r\n  'use strict'\r\n  age = 21\r\n  console.log(age)\r\n}\r\n\r\ngetAge()\r\n",
         "options": [
@@ -551,6 +571,7 @@
       },
       {
         "id": 21,
+        "isFormal": true,
         "title": "输出是什么？",
         "code": "const sum = eval('10*10+5')\r\n",
         "options": [
@@ -580,6 +601,7 @@
       },
       {
         "id": 22,
+        "isFormal": true,
         "title": "cool_secret 可访问多长时间？",
         "code": "sessionStorage.setItem('cool_secret', 123)\r\n",
         "options": [
@@ -609,6 +631,7 @@
       },
       {
         "id": 23,
+        "isFormal": true,
         "title": "输出是什么？",
         "code": "var num = 8\r\nvar num = 10\r\n\r\nconsole.log(num)\r\n",
         "options": [
@@ -638,6 +661,7 @@
       },
       {
         "id": 24,
+        "isFormal": true,
         "title": "输出是什么？",
         "code": "const obj = { 1: 'a', 2: 'b', 3: 'c' }\r\nconst set = new Set([1, 2, 3, 4, 5])\r\n\r\nobj.hasOwnProperty('1')\r\nobj.hasOwnProperty(1)\r\nset.has('1')\r\nset.has(1)\r\n",
         "options": [
@@ -667,6 +691,7 @@
       },
       {
         "id": 25,
+        "isFormal": true,
         "title": "输出是什么？",
         "code": "const obj = { a: 'one', b: 'two', a: 'three' }\r\nconsole.log(obj)\r\n",
         "options": [
@@ -696,6 +721,7 @@
       },
       {
         "id": 26,
+        "isFormal": true,
         "title": "JavaScript 全局执行上下文为你做了两件事：全局对象和 this 关键字。",
         "code": "\r\n\r\n###### 26.",
         "options": [
@@ -720,6 +746,7 @@
       },
       {
         "id": 27,
+        "isFormal": true,
         "title": "输出是什么？",
         "code": "for (let i = 1; i < 5; i++) {\r\n  if (i === 3) continue\r\n  console.log(i)\r\n}\r\n",
         "options": [
@@ -749,6 +776,7 @@
       },
       {
         "id": 28,
+        "isFormal": true,
         "title": "输出是什么？",
         "code": "String.prototype.giveLydiaPizza = () => {\r\n  return 'Just give Lydia pizza already!'\r\n}\r\n\r\nconst name = 'Lydia'\r\n\r\nname.giveLydiaPizza()\r\n",
         "options": [
@@ -778,6 +806,7 @@
       },
       {
         "id": 29,
+        "isFormal": true,
         "title": "输出是什么？",
         "code": "const a = {}\r\nconst b = { key: 'b' }\r\nconst c = { key: 'c' }\r\n\r\na[b] = 123\r\na[c] = 456\r\n\r\nconsole.log(a[b])\r\n",
         "options": [
@@ -807,6 +836,7 @@
       },
       {
         "id": 30,
+        "isFormal": true,
         "title": "输出是什么？",
         "code": "const foo = () => console.log('First')\r\nconst bar = () => setTimeout(() => console.log('Second'))\r\nconst baz = () => console.log('Third')\r\n\r\nbar()\r\nfoo()\r\nbaz()\r\n",
         "options": [
@@ -836,6 +866,7 @@
       },
       {
         "id": 31,
+        "isFormal": true,
         "title": "当点击按钮时，event.target是什么？",
         "code": "nclick=\"console.log('first div')\">\r\n  <div onclick=\"console.log('second div')\">\r\n    <button onclick=\"console.log('button')\">\r\n      Click!\r\n    </button>\r\n  </div>\r\n</div>\r\n",
         "options": [
@@ -865,6 +896,7 @@
       },
       {
         "id": 32,
+        "isFormal": true,
         "title": "当您单击该段落时，日志输出是什么？",
         "code": "nclick=\"console.log('div')\">\r\n  <p onclick=\"console.log('p')\">\r\n    Click here!\r\n  </p>\r\n</div>\r\n",
         "options": [
@@ -894,6 +926,7 @@
       },
       {
         "id": 33,
+        "isFormal": true,
         "title": "输出是什么？",
         "code": "const person = { name: 'Lydia' }\r\n\r\nfunction sayHi(age) {\r\n  console.log(`${this.name} is ${age}`)\r\n}\r\n\r\nsayHi.call(person, 21)\r\nsayHi.bind(person, 21)\r\n",
         "options": [
@@ -923,6 +956,7 @@
       },
       {
         "id": 34,
+        "isFormal": true,
         "title": "输出是什么？",
         "code": "function sayHi() {\r\n  return (() => 0)()\r\n}\r\n\r\ntypeof sayHi()\r\n",
         "options": [
@@ -952,6 +986,7 @@
       },
       {
         "id": 35,
+        "isFormal": true,
         "title": "下面哪些值是 falsy?",
         "code": "0\r\nnew Number(0)\r\n('')\r\n(' ')\r\nnew Boolean(false)\r\nundefined\r\n",
         "options": [
@@ -981,6 +1016,7 @@
       },
       {
         "id": 36,
+        "isFormal": true,
         "title": "输出是什么？",
         "code": "console.log(typeof typeof 1)\r\n",
         "options": [
@@ -1010,6 +1046,7 @@
       },
       {
         "id": 37,
+        "isFormal": true,
         "title": "输出是什么？",
         "code": "const numbers = [1, 2, 3]\r\nnumbers[10] = 11\r\nconsole.log(numbers)\r\n",
         "options": [
@@ -1039,6 +1076,7 @@
       },
       {
         "id": 38,
+        "isFormal": true,
         "title": "输出是什么？",
         "code": "(() => {\r\n  let x, y\r\n  try {\r\n    throw new Error()\r\n  } catch (x) {\r\n    (x = 1), (y = 2)\r\n    console.log(x)\r\n  }\r\n  console.log(x)\r\n  console.log(y)\r\n})()\r\n",
         "options": [
@@ -1068,6 +1106,7 @@
       },
       {
         "id": 39,
+        "isFormal": true,
         "title": "JavaScript 中的一切都是？",
         "code": "\r\n\r\n###### 39.",
         "options": [
@@ -1097,6 +1136,7 @@
       },
       {
         "id": 40,
+        "isFormal": true,
         "title": "输出是什么？",
         "code": "[[0, 1], [2, 3]].reduce(\r\n  (acc, cur) => {\r\n    return acc.concat(cur)\r\n  },\r\n  [1, 2]\r\n)\r\n",
         "options": [
@@ -1126,6 +1166,7 @@
       },
       {
         "id": 41,
+        "isFormal": true,
         "title": "输出是什么？",
         "code": "!!null\r\n!!''\r\n!!1\r\n",
         "options": [
@@ -1155,6 +1196,7 @@
       },
       {
         "id": 42,
+        "isFormal": true,
         "title": "`setInterval` 方法的返回值是什么？",
         "code": "setInterval(() => console.log('Hi'), 1000)\r\n",
         "options": [
@@ -1184,6 +1226,7 @@
       },
       {
         "id": 43,
+        "isFormal": true,
         "title": "输出是什么？",
         "code": "[...'Lydia']\r\n",
         "options": [
@@ -1213,6 +1256,7 @@
       },
       {
         "id": 44,
+        "isFormal": true,
         "title": "输出是什么?",
         "code": "function* generator(i) {\r\n  yield i;\r\n  yield i * 2;\r\n}\r\n\r\nconst gen = generator(10);\r\n\r\nconsole.log(gen.next().value);\r\nconsole.log(gen.next().value);\r\n",
         "options": [
@@ -1242,6 +1286,7 @@
       },
       {
         "id": 45,
+        "isFormal": true,
         "title": "返回值是什么?",
         "code": "const firstPromise = new Promise((res, rej) => {\r\n  setTimeout(res, 500, \"one\");\r\n});\r\n\r\nconst secondPromise = new Promise((res, rej) => {\r\n  setTimeout(res, 100, \"two\");\r\n});\r\n\r\nPromise.race([firstPromise, secondPromise]).then(res => console.log(res));\r\n",
         "options": [
@@ -1271,6 +1316,7 @@
       },
       {
         "id": 46,
+        "isFormal": true,
         "title": "输出是什么?",
         "code": "let person = { name: \"Lydia\" };\r\nconst members = [person];\r\nperson = null;\r\n\r\nconsole.log(members);\r\n",
         "options": [
@@ -1300,6 +1346,7 @@
       },
       {
         "id": 47,
+        "isFormal": true,
         "title": "输出是什么?",
         "code": "const person = {\r\n  name: \"Lydia\",\r\n  age: 21\r\n};\r\n\r\nfor (const item in person) {\r\n  console.log(item);\r\n}\r\n",
         "options": [
@@ -1329,6 +1376,7 @@
       },
       {
         "id": 48,
+        "isFormal": true,
         "title": "输出是什么?",
         "code": "console.log(3 + 4 + \"5\");\r\n",
         "options": [
@@ -1358,6 +1406,7 @@
       },
       {
         "id": 49,
+        "isFormal": true,
         "title": "`num`的值是什么?",
         "code": "const num = parseInt(\"7*6\", 10);\r\n",
         "options": [
@@ -1387,6 +1436,7 @@
       },
       {
         "id": 50,
+        "isFormal": true,
         "title": "输出是什么?",
         "code": "[1, 2, 3].map(num => {\r\n  if (typeof num === \"number\") return;\r\n  return num * 2;\r\n});\r\n",
         "options": [
@@ -1416,6 +1466,7 @@
       },
       {
         "id": 51,
+        "isFormal": true,
         "title": "输出的是什么?",
         "code": "function getInfo(member, year) {\r\n  member.name = \"Lydia\";\r\n  year = \"1998\";\r\n}\r\n\r\nconst person = { name: \"Sarah\" };\r\nconst birthYear = \"1997\";\r\n\r\ngetInfo(person, birthYear);\r\n\r\nconsole.log(person, birthYear);\r\n",
         "options": [
@@ -1445,6 +1496,7 @@
       },
       {
         "id": 52,
+        "isFormal": true,
         "title": "输出是什么?",
         "code": "function greeting() {\r\n  throw \"Hello world!\";\r\n}\r\n\r\nfunction sayHi() {\r\n  try {\r\n    const data = greeting();\r\n    console.log(\"It worked!\", data);\r\n  } catch (e) {\r\n    console.log(\"Oh no an error:\", e);\r\n  }\r\n}\r\n\r\nsayHi();\r\n",
         "options": [
@@ -1474,6 +1526,7 @@
       },
       {
         "id": 53,
+        "isFormal": true,
         "title": "输出是什么?",
         "code": "function Car() {\r\n  this.make = \"Lamborghini\";\r\n  return { make: \"Maserati\" };\r\n}\r\n\r\nconst myCar = new Car();\r\nconsole.log(myCar.make);\r\n",
         "options": [
@@ -1503,6 +1556,7 @@
       },
       {
         "id": 54,
+        "isFormal": true,
         "title": "输出是什么?",
         "code": "(() => {\r\n  let x = (y = 10);\r\n})();\r\n\r\nconsole.log(typeof x);\r\nconsole.log(typeof y);\r\n",
         "options": [
@@ -1532,6 +1586,7 @@
       },
       {
         "id": 55,
+        "isFormal": true,
         "title": "输出是什么?",
         "code": "class Dog {\r\n  constructor(name) {\r\n    this.name = name;\r\n  }\r\n}\r\n\r\nDog.prototype.bark = function() {\r\n  console.log(`Woof I am ${this.name}`);\r\n};\r\n\r\nconst pet = new Dog(\"Mara\");\r\n\r\npet.bark();\r\n\r\ndelete Dog.prototype.bark;\r\n\r\npet.bark();\r\n",
         "options": [
@@ -1561,6 +1616,7 @@
       },
       {
         "id": 56,
+        "isFormal": true,
         "title": "输出是什么?",
         "code": "const set = new Set([1, 1, 2, 3, 4]);\r\n\r\nconsole.log(set);\r\n",
         "options": [
@@ -1590,6 +1646,7 @@
       },
       {
         "id": 57,
+        "isFormal": true,
         "title": "输出是什么?",
         "code": "// counter.js\r\nlet counter = 10;\r\nexport default counter;\r\n",
         "options": [
@@ -1619,6 +1676,7 @@
       },
       {
         "id": 58,
+        "isFormal": true,
         "title": "输出是什么?",
         "code": "const name = \"Lydia\";\r\nage = 21;\r\n\r\nconsole.log(delete name);\r\nconsole.log(delete age);\r\n",
         "options": [
@@ -1648,6 +1706,7 @@
       },
       {
         "id": 59,
+        "isFormal": true,
         "title": "输出是什么?",
         "code": "const numbers = [1, 2, 3, 4, 5];\r\nconst [y] = numbers;\r\n\r\nconsole.log(y);\r\n",
         "options": [
@@ -1677,6 +1736,7 @@
       },
       {
         "id": 60,
+        "isFormal": true,
         "title": "输出是什么?",
         "code": "const user = { name: \"Lydia\", age: 21 };\r\nconst admin = { admin: true, ...user };\r\n\r\nconsole.log(admin);\r\n",
         "options": [
@@ -1706,6 +1766,7 @@
       },
       {
         "id": 61,
+        "isFormal": true,
         "title": "输出是什么?",
         "code": "const person = { name: \"Lydia\" };\r\n\r\nObject.defineProperty(person, \"age\", { value: 21 });\r\n\r\nconsole.log(person);\r\nconsole.log(Object.keys(person));\r\n",
         "options": [
@@ -1735,6 +1796,7 @@
       },
       {
         "id": 62,
+        "isFormal": true,
         "title": "输出是什么?",
         "code": "const settings = {\r\n  username: \"lydiahallie\",\r\n  level: 19,\r\n  health: 90\r\n};\r\n\r\nconst data = JSON.stringify(settings, [\"level\", \"health\"]);\r\nconsole.log(data);\r\n",
         "options": [
@@ -1764,6 +1826,7 @@
       },
       {
         "id": 63,
+        "isFormal": true,
         "title": "输出是什么?",
         "code": "let num = 10;\r\n\r\nconst increaseNumber = () => num++;\r\nconst increasePassedNumber = number => number++;\r\n\r\nconst num1 = increaseNumber();\r\nconst num2 = increasePassedNumber(num1);\r\n\r\nconsole.log(num1);\r\nconsole.log(num2);\r\n",
         "options": [
@@ -1793,6 +1856,7 @@
       },
       {
         "id": 64,
+        "isFormal": true,
         "title": "输出什么?",
         "code": "const value = { number: 10 };\r\n\r\nconst multiply = (x = { ...value }) => {\r\n  console.log(x.number *= 2);\r\n};\r\n\r\nmultiply();\r\nmultiply();\r\nmultiply(value);\r\nmultiply(value);\r\n",
         "options": [
@@ -1822,6 +1886,7 @@
       },
       {
         "id": 65,
+        "isFormal": true,
         "title": "输出什么?",
         "code": "[1, 2, 3, 4].reduce((x, y) => console.log(x, y));\r\n",
         "options": [
@@ -1851,6 +1916,7 @@
       },
       {
         "id": 66,
+        "isFormal": true,
         "title": "使用哪个构造函数可以成功继承`Dog`类?",
         "code": "class Dog {\r\n  constructor(name) {\r\n    this.name = name;\r\n  }\r\n};\r\n\r\nclass Labrador extends Dog {\r\n  // 1 \r\n  constructor(name, size) {\r\n    this.size = size;\r\n  }\r\n  // 2\r\n  constructor(name, size) {\r\n    super(name);\r\n    this.size = size;\r\n  }\r\n  // 3\r\n  constructor(size) {\r\n    super(name);\r\n    this.size = size;\r\n  }\r\n  // 4 \r\n  constructor(name, size) {\r\n    this.name = name;\r\n    this.size = size;\r\n  }\r\n\r\n};\r\n",
         "options": [
@@ -1880,6 +1946,7 @@
       },
       {
         "id": 67,
+        "isFormal": true,
         "title": "输出什么?",
         "code": "// index.js\r\nconsole.log('running index.js');\r\nimport { sum } from './sum.js';\r\nconsole.log(sum(1, 2));\r\n\r\n// sum.js\r\nconsole.log('running sum.js');\r\nexport const sum = (a, b) => a + b;\r\n",
         "options": [
@@ -1909,6 +1976,7 @@
       },
       {
         "id": 68,
+        "isFormal": true,
         "title": "输出什么?",
         "code": "console.log(Number(2) === Number(2))\r\nconsole.log(Boolean(false) === Boolean(false))\r\nconsole.log(Symbol('foo') === Symbol('foo'))\r\n",
         "options": [
@@ -1938,6 +2006,7 @@
       },
       {
         "id": 69,
+        "isFormal": true,
         "title": "输出什么?",
         "code": "const name = \"Lydia Hallie\"\r\nconsole.log(name.padStart(13))\r\nconsole.log(name.padStart(2))\r\n",
         "options": [
@@ -1967,6 +2036,7 @@
       },
       {
         "id": 70,
+        "isFormal": true,
         "title": "输出什么?",
         "code": "console.log(\"🥑\" + \"💻\");\r\n",
         "options": [
@@ -1996,6 +2066,7 @@
       },
       {
         "id": 71,
+        "isFormal": true,
         "title": "如何能打印出`console.log`语句后注释掉的值？",
         "code": "function* startGame() {\r\n  const 答案 = yield \"Do you love JavaScript?\";\r\n  if (答案 !== \"Yes\") {\r\n    return \"Oh wow... Guess we're gone here\";\r\n  }\r\n  return \"JavaScript loves you back ❤️\";\r\n}\r\n\r\nconst game = startGame();\r\nconsole.log(/* 1 */); // Do you love JavaScript?\r\nconsole.log(/* 2 */); // JavaScript loves you back ❤️\r\n",
         "options": [
@@ -2025,6 +2096,7 @@
       },
       {
         "id": 72,
+        "isFormal": true,
         "title": "输出什么?",
         "code": "console.log(String.raw`Hello\\nworld`);\r\n",
         "options": [
@@ -2054,6 +2126,7 @@
       },
       {
         "id": 73,
+        "isFormal": true,
         "title": "输出什么?",
         "code": "async function getData() {\r\n  return await Promise.resolve(\"I made it!\");\r\n}\r\n\r\nconst data = getData();\r\nconsole.log(data);\r\n",
         "options": [
@@ -2083,6 +2156,7 @@
       },
       {
         "id": 74,
+        "isFormal": true,
         "title": "输出什么?",
         "code": "function addToList(item, list) {\r\n  return list.push(item);\r\n}\r\n\r\nconst result = addToList(\"apple\", [\"banana\"]);\r\nconsole.log(result);\r\n",
         "options": [
@@ -2112,6 +2186,7 @@
       },
       {
         "id": 75,
+        "isFormal": true,
         "title": "输出什么?",
         "code": "const box = { x: 10, y: 20 };\r\n\r\nObject.freeze(box);\r\n\r\nconst shape = box;\r\nshape.x = 100;\r\nconsole.log(shape)\r\n",
         "options": [
@@ -2141,6 +2216,7 @@
       },
       {
         "id": 76,
+        "isFormal": true,
         "title": "输出什么?",
         "code": "const { name: myName } = { name: \"Lydia\" };\r\n\r\nconsole.log(name);\r\n",
         "options": [
@@ -2170,6 +2246,7 @@
       },
       {
         "id": 77,
+        "isFormal": true,
         "title": "以下是个纯函数么?",
         "code": "function sum(a, b) {\r\n  return a + b;\r\n}\r\n",
         "options": [
@@ -2189,6 +2266,7 @@
       },
       {
         "id": 78,
+        "isFormal": true,
         "title": "输出什么?",
         "code": "const add = () => {\r\n  const cache = {};\r\n  return num => {\r\n    if (num in cache) {\r\n      return `From cache! ${cache[num]}`;\r\n    } else {\r\n      const result = num + 10;\r\n      cache[num] = result;\r\n      return `Calculated! ${result}`;\r\n    }\r\n  };\r\n};\r\n\r\nconst addFunction = add();\r\nconsole.log(addFunction(10));\r\nconsole.log(addFunction(10));\r\nconsole.log(addFunction(5 * 2));\r\n",
         "options": [
@@ -2218,6 +2296,7 @@
       },
       {
         "id": 79,
+        "isFormal": true,
         "title": "输出什么?",
         "code": "const myLifeSummedUp = [\"☕\", \"💻\", \"🍷\", \"🍫\"]\r\n\r\nfor (let item in myLifeSummedUp) {\r\n  console.log(item)\r\n}\r\n\r\nfor (let item of myLifeSummedUp) {\r\n  console.log(item)\r\n}\r\n",
         "options": [
@@ -2247,6 +2326,7 @@
       },
       {
         "id": 80,
+        "isFormal": true,
         "title": "输出什么?",
         "code": "const list = [1 + 2, 1 * 2, 1 / 2]\r\nconsole.log(list)\r\n",
         "options": [
@@ -2276,6 +2356,7 @@
       },
       {
         "id": 81,
+        "isFormal": true,
         "title": "输出什么?",
         "code": "function sayHi(name) {\r\n  return `Hi there, ${name}`\r\n}\r\n\r\nconsole.log(sayHi())\r\n",
         "options": [
@@ -2305,6 +2386,7 @@
       },
       {
         "id": 82,
+        "isFormal": true,
         "title": "输出什么?",
         "code": "var status = \"😎\"\r\n\r\nsetTimeout(() => {\r\n  const status = \"😍\"\r\n\r\n  const data = {\r\n    status: \"🥑\",\r\n    getStatus() {\r\n      return this.status\r\n    }\r\n  }\r\n\r\n  console.log(data.getStatus())\r\n  console.log(data.getStatus.call(this))\r\n}, 0)\r\n",
         "options": [
@@ -2334,6 +2416,7 @@
       },
       {
         "id": 83,
+        "isFormal": true,
         "title": "输出什么?",
         "code": "const person = {\r\n  name: \"Lydia\",\r\n  age: 21\r\n}\r\n\r\nlet city = person.city\r\ncity = \"Amsterdam\"\r\n\r\nconsole.log(person)\r\n",
         "options": [
@@ -2363,6 +2446,7 @@
       },
       {
         "id": 84,
+        "isFormal": true,
         "title": "输出什么?",
         "code": "function checkAge(age) {\r\n  if (age < 18) {\r\n    const message = \"Sorry, you're too young.\"\r\n  } else {\r\n    const message = \"Yay! You're old enough!\"\r\n  }\r\n\r\n  return message\r\n}\r\n\r\nconsole.log(checkAge(21))\r\n",
         "options": [
@@ -2392,6 +2476,7 @@
       },
       {
         "id": 85,
+        "isFormal": true,
         "title": "什么样的信息将被打印?",
         "code": "fetch('https://www.website.com/api/user/1')\r\n  .then(res => res.json())\r\n  .then(res => console.log(res))\r\n",
         "options": [
@@ -2421,6 +2506,7 @@
       },
       {
         "id": 86,
+        "isFormal": true,
         "title": "哪个选项是将`hasName`设置为`true`的方法，前提是不能将`true`作为参数传递?",
         "code": "function getName(name) {\r\n  const hasName = //\r\n}\r\n",
         "options": [
@@ -2450,6 +2536,7 @@
       },
       {
         "id": 87,
+        "isFormal": true,
         "title": "输出什么?",
         "code": "console.log(\"I want pizza\"[0])\r\n",
         "options": [
@@ -2479,6 +2566,7 @@
       },
       {
         "id": 88,
+        "isFormal": true,
         "title": "输出什么?",
         "code": "function sum(num1, num2 = num1) {\r\n  console.log(num1 + num2)\r\n}\r\n\r\nsum(10)\r\n",
         "options": [
@@ -2508,6 +2596,7 @@
       },
       {
         "id": 89,
+        "isFormal": true,
         "title": "输出什么?",
         "code": "// module.js \r\nexport default () => \"Hello world\"\r\nexport const name = \"Lydia\"\r\n\r\n// index.js \r\nimport * as data from \"./module\"\r\n\r\nconsole.log(data)\r\n",
         "options": [
@@ -2537,6 +2626,7 @@
       },
       {
         "id": 90,
+        "isFormal": true,
         "title": "输出什么?",
         "code": "class Person {\r\n  constructor(name) {\r\n    this.name = name\r\n  }\r\n}\r\n\r\nconst member = new Person(\"John\")\r\nconsole.log(typeof member)\r\n",
         "options": [
@@ -2566,6 +2656,7 @@
       },
       {
         "id": 91,
+        "isFormal": true,
         "title": "输出什么?",
         "code": "let newList = [1, 2, 3].push(4)\r\n\r\nconsole.log(newList.push(5))\r\n",
         "options": [
@@ -2595,6 +2686,7 @@
       },
       {
         "id": 92,
+        "isFormal": true,
         "title": "输出什么?",
         "code": "function giveLydiaPizza() {\r\n  return \"Here is pizza!\"\r\n}\r\n\r\nconst giveLydiaChocolate = () => \"Here's chocolate... now go hit the gym already.\"\r\n\r\nconsole.log(giveLydiaPizza.prototype)\r\nconsole.log(giveLydiaChocolate.prototype)\r\n",
         "options": [
@@ -2624,6 +2716,7 @@
       },
       {
         "id": 93,
+        "isFormal": true,
         "title": "输出什么?",
         "code": "const person = {\r\n  name: \"Lydia\",\r\n  age: 21\r\n}\r\n\r\nfor (const [x, y] of Object.entries(person)) {\r\n  console.log(x, y)\r\n}\r\n",
         "options": [
@@ -2653,6 +2746,7 @@
       },
       {
         "id": 94,
+        "isFormal": true,
         "title": "输出什么?",
         "code": "function getItems(fruitList, ...args, favoriteFruit) {\r\n  return [...fruitList, ...args, favoriteFruit]\r\n}\r\n\r\ngetItems([\"banana\", \"apple\"], \"pear\", \"orange\")\r\n",
         "options": [
@@ -2682,6 +2776,7 @@
       },
       {
         "id": 95,
+        "isFormal": true,
         "title": "输出什么?",
         "code": "function nums(a, b) {\r\n  if\r\n  (a > b)\r\n  console.log('a is bigger')\r\n  else \r\n  console.log('b is bigger')\r\n  return \r\n  a + b\r\n}\r\n\r\nconsole.log(nums(4, 2))\r\nconsole.log(nums(1, 2))\r\n",
         "options": [
@@ -2711,6 +2806,7 @@
       },
       {
         "id": 96,
+        "isFormal": true,
         "title": "输出什么?",
         "code": "class Person {\r\n  constructor() {\r\n    this.name = \"Lydia\"\r\n  }\r\n}\r\n\r\nPerson = class AnotherPerson {\r\n  constructor() {\r\n    this.name = \"Sarah\"\r\n  }\r\n}\r\n\r\nconst member = new Person()\r\nconsole.log(member.name)\r\n",
         "options": [
@@ -2740,6 +2836,7 @@
       },
       {
         "id": 97,
+        "isFormal": true,
         "title": "输出什么?",
         "code": "const info = {\r\n  [Symbol('a')]: 'b'\r\n}\r\n\r\nconsole.log(info)\r\nconsole.log(Object.keys(info))\r\n",
         "options": [
@@ -2769,6 +2866,7 @@
       },
       {
         "id": 98,
+        "isFormal": true,
         "title": "输出什么?",
         "code": "const getList = ([x, ...y]) => [x, y]\r\nconst getUser = user => { name: user.name, age: user.age }\r\n\r\nconst list = [1, 2, 3, 4]\r\nconst user = { name: \"Lydia\", age: 21 }\r\n\r\nconsole.log(getList(list))\r\nconsole.log(getUser(user))\r\n",
         "options": [
@@ -2798,6 +2896,7 @@
       },
       {
         "id": 99,
+        "isFormal": true,
         "title": "输出什么?",
         "code": "const name = \"Lydia\"\r\n\r\nconsole.log(name())\r\n",
         "options": [
@@ -2827,6 +2926,7 @@
       },
       {
         "id": 100,
+        "isFormal": true,
         "title": "输出什么?",
         "code": "// 🎉✨ This is my 100th question! ✨🎉\r\n\r\nconst output = `${[] && 'Im'}possible!\r\nYou should${'' && `n't`} see a therapist after so much JavaScript lol`\r\n",
         "options": [
@@ -2856,6 +2956,7 @@
       },
       {
         "id": 101,
+        "isFormal": true,
         "title": "输出什么?",
         "code": "const one = (false || {} || null)\r\nconst two = (null || false || \"\")\r\nconst three = ([] || 0 || true)\r\n\r\nconsole.log(one, two, three)\r\n",
         "options": [
@@ -2885,6 +2986,7 @@
       },
       {
         "id": 102,
+        "isFormal": true,
         "title": "依次输出什么?",
         "code": "const myPromise = () => Promise.resolve('I have resolved!')\r\n\r\nfunction firstFunction() {\r\n  myPromise().then(res => console.log(res))\r\n  console.log('second')\r\n}\r\n\r\nasync function secondFunction() {\r\n  console.log(await myPromise())\r\n  console.log('second')\r\n}\r\n\r\nfirstFunction()\r\nsecondFunction()\r\n",
         "options": [
@@ -2914,6 +3016,7 @@
       },
       {
         "id": 103,
+        "isFormal": true,
         "title": "输出什么?",
         "code": "const set = new Set()\r\n\r\nset.add(1)\r\nset.add(\"Lydia\")\r\nset.add({ name: \"Lydia\" })\r\n\r\nfor (let item of set) {\r\n  console.log(item + 2)\r\n}\r\n",
         "options": [
@@ -2943,6 +3046,7 @@
       },
       {
         "id": 104,
+        "isFormal": true,
         "title": "结果是什么?",
         "code": "Promise.resolve(5)\r\n",
         "options": [
@@ -2972,6 +3076,7 @@
       },
       {
         "id": 105,
+        "isFormal": true,
         "title": "输出什么?",
         "code": "function compareMembers(person1, person2 = person) {\r\n  if (person1 !== person2) {\r\n    console.log(\"Not the same!\")\r\n  } else {\r\n    console.log(\"They are the same!\")\r\n  }\r\n}\r\n\r\nconst person = { name: \"Lydia\" }\r\n\r\ncompareMembers(person)\r\n",
         "options": [
@@ -3001,6 +3106,7 @@
       },
       {
         "id": 106,
+        "isFormal": true,
         "title": "输出什么?",
         "code": "const colorConfig = {\r\n  red: true,\r\n  blue: false,\r\n  green: true,\r\n  black: true,\r\n  yellow: false,\r\n}\r\n\r\nconst colors = [\"pink\", \"red\", \"blue\"]\r\n\r\nconsole.log(colorConfig.colors[1])\r\n",
         "options": [
@@ -3030,6 +3136,7 @@
       },
       {
         "id": 107,
+        "isFormal": true,
         "title": "输出什么?",
         "code": "console.log('❤️' === '❤️')\r\n",
         "options": [
@@ -3049,6 +3156,7 @@
       },
       {
         "id": 108,
+        "isFormal": true,
         "title": "哪些方法修改了原数组?",
         "code": "const emojis = ['✨', '🥑', '😍']\r\n\r\nemojis.map(x => x + '✨')\r\nemojis.filter(x => x !== '🥑')\r\nemojis.find(x => x !== '🥑')\r\nemojis.reduce((acc, cur) => acc + '✨')\r\nemojis.slice(1, 2, '✨') \r\nemojis.splice(1, 2, '✨')\r\n",
         "options": [
@@ -3078,6 +3186,7 @@
       },
       {
         "id": 109,
+        "isFormal": true,
         "title": "输出什么?",
         "code": "const food = ['🍕', '🍫', '🥑', '🍔']\r\nconst info = { favoriteFood: food[0] }\r\n\r\ninfo.favoriteFood = '🍝'\r\n\r\nconsole.log(food)\r\n",
         "options": [
@@ -3107,6 +3216,7 @@
       },
       {
         "id": 110,
+        "isFormal": true,
         "title": "这个函数干了什么?",
         "code": "JSON.parse()\r\n",
         "options": [
@@ -3136,6 +3246,7 @@
       },
       {
         "id": 111,
+        "isFormal": true,
         "title": "输出什么?",
         "code": "let name = 'Lydia'\r\n\r\nfunction getName() {\r\n  console.log(name)\r\n  let name = 'Sarah'\r\n}\r\n\r\ngetName()\r\n",
         "options": [
@@ -3165,6 +3276,7 @@
       },
       {
         "id": 112,
+        "isFormal": true,
         "title": "输出什么？",
         "code": "function* generatorOne() {\r\n  yield ['a', 'b', 'c'];\r\n}\r\n\r\nfunction* generatorTwo() {\r\n  yield* ['a', 'b', 'c'];\r\n}\r\n\r\nconst one = generatorOne()\r\nconst two = generatorTwo()\r\n\r\nconsole.log(one.next().value)\r\nconsole.log(two.next().value)\r\n",
         "options": [
@@ -3194,6 +3306,7 @@
       },
       {
         "id": 113,
+        "isFormal": true,
         "title": "输出什么？",
         "code": "console.log(`${(x => x)('I love')} to program`)\r\n",
         "options": [
@@ -3223,6 +3336,7 @@
       },
       {
         "id": 114,
+        "isFormal": true,
         "title": "将会发生什么?",
         "code": "let config = {\r\n  alert: setInterval(() => {\r\n    console.log('Alert!')\r\n  }, 1000)\r\n}\r\n\r\nconfig = null\r\n",
         "options": [
@@ -3252,6 +3366,7 @@
       },
       {
         "id": 115,
+        "isFormal": true,
         "title": "哪一个方法会返回 `'Hello world!'` ？",
         "code": "const myMap = new Map()\r\nconst myFunc = () => 'greeting'\r\n\r\nmyMap.set(myFunc, 'Hello world!')\r\n\r\n//1\r\nmyMap.get('greeting')\r\n//2\r\nmyMap.get(myFunc)\r\n//3\r\nmyMap.get(() => 'greeting')\r\n",
         "options": [
@@ -3281,6 +3396,7 @@
       },
       {
         "id": 116,
+        "isFormal": true,
         "title": "输出什么？",
         "code": "const person = {\r\n  name: \"Lydia\",\r\n  age: 21\r\n}\r\n\r\nconst changeAge = (x = { ...person }) => x.age += 1\r\nconst changeAgeAndName = (x = { ...person }) => {\r\n  x.age += 1\r\n  x.name = \"Sarah\"\r\n}\r\n\r\nchangeAge(person)\r\nchangeAgeAndName()\r\n\r\nconsole.log(person)\r\n",
         "options": [
@@ -3310,6 +3426,7 @@
       },
       {
         "id": 117,
+        "isFormal": true,
         "title": "下面那个选项将会返回 `6`?",
         "code": "function sumValues(x, y, z) {\r\n\treturn x + y + z;\r\n}\r\n",
         "options": [
@@ -3339,6 +3456,7 @@
       },
       {
         "id": 118,
+        "isFormal": true,
         "title": "输出什么？",
         "code": "let num = 1;\r\nconst list = [\"🥳\", \"🤠\", \"🥰\", \"🤪\"];\r\n\r\nconsole.log(list[(num += 1)]);\r\n",
         "options": [
@@ -3368,6 +3486,7 @@
       },
       {
         "id": 119,
+        "isFormal": true,
         "title": "输出什么？",
         "code": "const person = {\r\n\tfirstName: \"Lydia\",\r\n\tlastName: \"Hallie\",\r\n\tpet: {\r\n\t\tname: \"Mara\",\r\n\t\tbreed: \"Dutch Tulip Hound\"\r\n\t},\r\n\tgetFullName() {\r\n\t\treturn `${this.firstName} ${this.lastName}`;\r\n\t}\r\n};\r\n\r\nconsole.log(person.pet?.name);\r\nconsole.log(person.pet?.family?.name);\r\nconsole.log(person.getFullName?.());\r\nconsole.log(member.getLastName?.());\r\n",
         "options": [
@@ -3397,6 +3516,7 @@
       },
       {
         "id": 120,
+        "isFormal": true,
         "title": "输出什么？",
         "code": "const groceries = [\"banana\", \"apple\", \"peanuts\"];\r\n\r\nif (groceries.indexOf(\"banana\")) {\r\n\tconsole.log(\"We have to buy bananas!\");\r\n} else {\r\n\tconsole.log(`We don't have to buy bananas!`);\r\n}\r\n",
         "options": [
@@ -3426,6 +3546,7 @@
       },
       {
         "id": 121,
+        "isFormal": true,
         "title": "输出什么?",
         "code": "const config = {\r\n\tlanguages: [],\r\n\tset language(lang) {\r\n\t\treturn this.languages.push(lang);\r\n\t}\r\n};\r\n\r\nconsole.log(config.language);\r\n",
         "options": [
@@ -3455,6 +3576,7 @@
       },
       {
         "id": 122,
+        "isFormal": true,
         "title": "输出什么？",
         "code": "const name = \"Lydia Hallie\";\r\n\r\nconsole.log(!typeof name === \"object\");\r\nconsole.log(!typeof name === \"string\");\r\n",
         "options": [
@@ -3484,6 +3606,7 @@
       },
       {
         "id": 123,
+        "isFormal": true,
         "title": "输出什么?",
         "code": "const add = x => y => z => {\r\n\tconsole.log(x, y, z);\r\n\treturn x + y + z;\r\n};\r\n\r\nadd(4)(5)(6);\r\n",
         "options": [
@@ -3513,6 +3636,7 @@
       },
       {
         "id": 124,
+        "isFormal": true,
         "title": "输出什么？",
         "code": "async function* range(start, end) {\r\n\tfor (let i = start; i <= end; i++) {\r\n\t\tyield Promise.resolve(i);\r\n\t}\r\n}\r\n\r\n(async () => {\r\n\tconst gen = range(1, 3);\r\n\tfor await (const item of gen) {\r\n\t\tconsole.log(item);\r\n\t}\r\n})();\r\n",
         "options": [
@@ -3542,6 +3666,7 @@
       },
       {
         "id": 125,
+        "isFormal": true,
         "title": "输出什么？",
         "code": "const myFunc = ({ x, y, z }) => {\r\n\tconsole.log(x, y, z);\r\n};\r\n\r\nmyFunc(1, 2, 3);\r\n",
         "options": [
@@ -3571,6 +3696,7 @@
       },
       {
         "id": 126,
+        "isFormal": true,
         "title": "输出什么？",
         "code": "function getFine(speed, amount) {\r\n  const formattedSpeed = new Intl.NumberFormat({\r\n    'en-US',\r\n    { style: 'unit', unit: 'mile-per-hour' }\r\n  }).format(speed)\r\n\r\n  const formattedAmount = new Intl.NumberFormat({\r\n    'en-US',\r\n    { style: 'currency', currency: 'USD' }\r\n  }).format(amount)\r\n\r\n  return `The driver drove ${formattedSpeed} and has to pay ${formattedAmount}`\r\n}\r\n\r\nconsole.log(getFine(130, 300))\r\n",
         "options": [
@@ -3600,6 +3726,7 @@
       },
       {
         "id": 127,
+        "isFormal": true,
         "title": "输出什么？",
         "code": "const spookyItems = [\"👻\", \"🎃\", \"🕸\"];\r\n({ item: spookyItems[3] } = { item: \"💀\" });\r\n\r\nconsole.log(spookyItems);\r\n",
         "options": [
@@ -3629,6 +3756,7 @@
       },
       {
         "id": 128,
+        "isFormal": true,
         "title": "输出什么？",
         "code": "const name = \"Lydia Hallie\";\r\nconst age = 21;\r\n\r\nconsole.log(Number.isNaN(name));\r\nconsole.log(Number.isNaN(age));\r\n\r\nconsole.log(isNaN(name));\r\nconsole.log(isNaN(age));\r\n",
         "options": [
@@ -3658,6 +3786,7 @@
       },
       {
         "id": 129,
+        "isFormal": true,
         "title": "输出什么？",
         "code": "const randomValue = 21;\r\n\r\nfunction getInfo() {\r\n\tconsole.log(typeof randomValue);\r\n\tconst randomValue = \"Lydia Hallie\";\r\n}\r\n\r\ngetInfo();\r\n",
         "options": [
@@ -3687,6 +3816,7 @@
       },
       {
         "id": 130,
+        "isFormal": true,
         "title": "输出什么？",
         "code": "const myPromise = Promise.resolve(\"Woah some cool data\");\r\n\r\n(async () => {\r\n\ttry {\r\n\t\tconsole.log(await myPromise);\r\n\t} catch {\r\n\t\tthrow new Error(`Oops didn't work`);\r\n\t} finally {\r\n\t\tconsole.log(\"Oh finally!\");\r\n\t}\r\n})();\r\n",
         "options": [
@@ -3716,6 +3846,7 @@
       },
       {
         "id": 131,
+        "isFormal": true,
         "title": "输出什么？",
         "code": "const emojis = [\"🥑\", [\"✨\", \"✨\", [\"🍕\", \"🍕\"]]];\r\n\r\nconsole.log(emojis.flat(1));\r\n",
         "options": [
@@ -3745,6 +3876,7 @@
       },
       {
         "id": 132,
+        "isFormal": true,
         "title": "输出什么？",
         "code": "class Counter {\r\n\tconstructor() {\r\n\t\tthis.count = 0;\r\n\t}\r\n\r\n\tincrement() {\r\n\t\tthis.count++;\r\n\t}\r\n}\r\n\r\nconst counterOne = new Counter();\r\ncounterOne.increment();\r\ncounterOne.increment();\r\n\r\nconst counterTwo = counterOne;\r\ncounterTwo.increment();\r\n\r\nconsole.log(counterOne.count);\r\n",
         "options": [
@@ -3774,6 +3906,7 @@
       },
       {
         "id": 133,
+        "isFormal": true,
         "title": "输出什么？",
         "code": "const myPromise = Promise.resolve(Promise.resolve(\"Promise!\"));\r\n\r\nfunction funcOne() {\r\n\tmyPromise.then(res => res).then(res => console.log(res));\r\n\tsetTimeout(() => console.log(\"Timeout!\", 0));\r\n\tconsole.log(\"Last line!\");\r\n}\r\n\r\nasync function funcTwo() {\r\n\tconst res = await myPromise;\r\n\tconsole.log(await res);\r\n\tsetTimeout(() => console.log(\"Timeout!\", 0));\r\n\tconsole.log(\"Last line!\");\r\n}\r\n\r\nfuncOne();\r\nfuncTwo();\r\n",
         "options": [
@@ -3803,6 +3936,7 @@
       },
       {
         "id": 134,
+        "isFormal": true,
         "title": "我们怎样才能在 `index.js` 中调用 `sum.js?` 中的 `sum`？",
         "code": "// sum.js\r\nexport default function sum(x) {\r\n\treturn x + x;\r\n}\r\n\r\n// index.js\r\nimport * as sum from \"./sum\";\r\n",
         "options": [
@@ -3832,6 +3966,7 @@
       },
       {
         "id": 135,
+        "isFormal": true,
         "title": "输出什么？",
         "code": "const handler = {\r\n\tset: () => console.log(\"Added a new property!\"),\r\n\tget: () => console.log(\"Accessed a property!\")\r\n};\r\n\r\nconst person = new Proxy({}, handler);\r\n\r\nperson.name = \"Lydia\";\r\nperson.name;\r\n",
         "options": [
@@ -3861,6 +3996,7 @@
       },
       {
         "id": 136,
+        "isFormal": true,
         "title": "以下哪一项会对对象 `person` 有副作用？",
         "code": "const person = { name: \"Lydia Hallie\" };\r\n\r\nObject.seal(person);\r\n",
         "options": [
@@ -3890,6 +4026,7 @@
       },
       {
         "id": 137,
+        "isFormal": true,
         "title": "以下哪一项会对对象 `person` 有副作用？",
         "code": "const person = {\r\n\tname: \"Lydia Hallie\",\r\n\taddress: {\r\n\t\tstreet: \"100 Main St\"\r\n\t}\r\n};\r\n\r\nObject.freeze(person);\r\n",
         "options": [
@@ -3919,6 +4056,7 @@
       },
       {
         "id": 138,
+        "isFormal": true,
         "title": "输出什么？",
         "code": "const add = x => x + x;\r\n\r\nfunction myFunc(num = 2, value = add(num)) {\r\n\tconsole.log(num, value);\r\n}\r\n\r\nmyFunc();\r\nmyFunc(3);\r\n",
         "options": [
@@ -3948,6 +4086,7 @@
       },
       {
         "id": 139,
+        "isFormal": true,
         "title": "输出什么？",
         "code": "class Counter {\r\n  #number = 10\r\n\r\n  increment() {\r\n    this.#number++\r\n  }\r\n\r\n  getNum() {\r\n    return this.#number\r\n  }\r\n}\r\n\r\nconst counter = new Counter()\r\ncounter.increment()\r\n\r\nconsole.log(counter.#number)\r\n",
         "options": [
@@ -3977,6 +4116,7 @@
       },
       {
         "id": 140,
+        "isFormal": true,
         "title": "选择哪一个？",
         "code": "const teams = [\r\n\t{ name: \"Team 1\", members: [\"Paul\", \"Lisa\"] },\r\n\t{ name: \"Team 2\", members: [\"Laura\", \"Tim\"] }\r\n];\r\n\r\nfunction* getMembers(members) {\r\n\tfor (let i = 0; i < members.length; i++) {\r\n\t\tyield members[i];\r\n\t}\r\n}\r\n\r\nfunction* getTeams(teams) {\r\n\tfor (let i = 0; i < teams.length; i++) {\r\n\t\t// ✨ SOMETHING IS MISSING HERE ✨\r\n\t}\r\n}\r\n\r\nconst obj = getTeams(teams);\r\nobj.next(); // { value: \"Paul\", done: false }\r\nobj.next(); // { value: \"Lisa\", done: false }\r\n",
         "options": [
@@ -4006,6 +4146,7 @@
       },
       {
         "id": 141,
+        "isFormal": true,
         "title": "输出什么？",
         "code": "const person = {\r\n\tname: \"Lydia Hallie\",\r\n\thobbies: [\"coding\"]\r\n};\r\n\r\nfunction addHobby(hobby, hobbies = person.hobbies) {\r\n\thobbies.push(hobby);\r\n\treturn hobbies;\r\n}\r\n\r\naddHobby(\"running\", []);\r\naddHobby(\"dancing\");\r\naddHobby(\"baking\", person.hobbies);\r\n\r\nconsole.log(person.hobbies);\r\n",
         "options": [
@@ -4035,6 +4176,7 @@
       },
       {
         "id": 142,
+        "isFormal": true,
         "title": "输出什么？",
         "code": "class Bird {\r\n\tconstructor() {\r\n\t\tconsole.log(\"I'm a bird. 🦢\");\r\n\t}\r\n}\r\n\r\nclass Flamingo extends Bird {\r\n\tconstructor() {\r\n\t\tconsole.log(\"I'm pink. 🌸\");\r\n\t\tsuper();\r\n\t}\r\n}\r\n\r\nconst pet = new Flamingo();\r\n",
         "options": [
@@ -4064,6 +4206,7 @@
       },
       {
         "id": 143,
+        "isFormal": true,
         "title": "哪一个选项会导致报错？",
         "code": "const emojis = [\"🎄\", \"🎅🏼\", \"🎁\", \"⭐\"];\r\n\r\n/* 1 */ emojis.push(\"🦌\");\r\n/* 2 */ emojis.splice(0, 2);\r\n/* 3 */ emojis = [...emojis, \"🥂\"];\r\n/* 4 */ emojis.length = 0;\r\n",
         "options": [
@@ -4093,6 +4236,7 @@
       },
       {
         "id": 144,
+        "isFormal": true,
         "title": "我们需要向对象 `person` 添加什么，以致执行 `[...person]` 时获得形如 `[\"Lydia Hallie\", 21]` 的输出？",
         "code": "const person = {\r\n  name: \"Lydia Hallie\",\r\n  age: 21\r\n}\r\n\r\n[...person] // [\"Lydia Hallie\", 21]\r\n",
         "options": [

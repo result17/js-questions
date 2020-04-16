@@ -1,0 +1,16 @@
+.btns-wrapper {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 5%;
+  width: 15%;
+}
+
+.btns-wrapper > * {
+  margin-top: 10px;
+  height: 100% !important;
+  white-space: normal !important;
+}
+
+.btns-wrapper :first-child {
+  margin-top: 0;
+}

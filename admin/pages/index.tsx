@@ -60,6 +60,17 @@ const QuizUploadContainer: FC = lazy(async () => {
   return Promise.all([importPromise, delayPromise]).then(() => importPromise)
 })
 
+const QuizListContainer: FC = lazy(async () => {
+  const importPromise = import('./quizList/QuizList')
+  const delayPromise = new Promise(res => {
+    let timer = setTimeout(() => {
+      clearTimeout(timer)
+      res()
+    }, atLeastDelayTime)
+  })
+  return Promise.all([importPromise, delayPromise]).then(() => importPromise)
+})
+
 const Login: FC<RouteComponentProps> = (props: RouteComponentProps) => {
   return (
     <>
@@ -110,4 +121,14 @@ const QuizUpload: FC = () => {
   )
 }
 
-export { Login, Regist, NotFound, Fallback, EchartsDemo, QuizUpload }
+const QuizList: FC = () => {
+  return (
+    <>
+      <Suspense fallback={ <Fallback />}>
+        <QuizListContainer />
+      </Suspense>
+    </>
+  )
+}
+
+export { Login, Regist, NotFound, Fallback, EchartsDemo, QuizUpload, QuizList }

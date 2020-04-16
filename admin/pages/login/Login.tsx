@@ -41,7 +41,7 @@ const LoginForm: FC<RouteProps> = (props: RouteProps) => {
   const [form] = Form.useForm()
   const initConfig: AxiosRequestConfig = { 
                                             url: '/login', 
-                                            data: {}
+                                            data: {},
                                          }
 
   const [loginReqConfig, SetLoginConfig] = useState(initConfig)
