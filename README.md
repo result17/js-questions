@@ -4,6 +4,11 @@ js-question是一个基于React，Koa和Antd的js题目后台管理系统。它�
 ### thanks
 此仓库题目来源于[javascript-questions](https://github.com/lydiahallie/javascript-questions)，而且收到作者lydiahallie启发。
 
+### pics
+![img](https://github.com/result17/js-questions/blob/master/pics/upload.png?raw=true)
+![img](https://github.com/result17/js-questions/blob/master/pics/table.png?raw=true)
+![img](https://github.com/result17/js-questions/blob/master/pics/questions.png?raw=true)
+
 ## Todo
 - 后端验证输入，mysql用utf8mb4字符集，所以理论上也可以用👆等表情作为用户名。
 - Redis创建token黑名单。
