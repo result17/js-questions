@@ -1,5 +1,7 @@
 ## Docs
-js-question是一个基于React，Koa和Antd的js题目后台管理系统。它有动态路由，权限验证等功能，为不同用户提供不同的功能模块和路由，提供了上传题目，浏览题目和编辑题目（todo）等功能。页面包含有注册，登录，404，动态挂载组件的过度页面。欢迎来提交题目或者给我提issue。
+js-question是一个基于React，Koa，jwt和Antd的js题目后台管理系统。它有动态路由，权限验证等功能，为不同用户提供不同的功能模块和路由，提供了上传题目，浏览题目和编辑题目（todo）等功能。页面包含有注册，登录，404，动态挂载组件的过度页面。
+后端数据库使用MySQL 8.0，封装了数据库操作类，直接存储JSON。用户验证使用jwt token，对接口进行验证。
+欢迎来提交题目或者给我提issue。
 
 ### thanks
 此仓库题目来源于[javascript-questions](https://github.com/lydiahallie/javascript-questions)，而且收到作者lydiahallie启发。
