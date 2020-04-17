@@ -1,6 +1,11 @@
+## Docs
+js-question是一个基于React，Koa和Antd的js题目后台管理系统。它有动态路由，权限验证等功能，为不同用户提供不同的功能模块和路由，提供了上传题目，浏览题目和编辑题目（todo）等功能。页面包含有注册，登录，404，动态挂载组件的过度页面。欢迎来提交题目或者给我提issue。
+
+### thanks
+此仓库题目来源于[javascript-questions](https://github.com/lydiahallie/javascript-questions)，而且收到作者lydiahallie启发。
+
 ## Todo
 - 后端验证输入，mysql用utf8mb4字符集，所以理论上也可以用👆等表情作为用户名。
-- css-in-js。
 - Redis创建token黑名单。
 - salt取值和hash验证存在问题。
 - 未做用户名unique处理。
@@ -16,6 +21,7 @@
 - 后端接口role认证（中间件传递信息ctx）。
 - 数据加载状态显示及错误展示。
 - 长列表性能优化。
+- 面包屑导航。
 
 ## refence
 - [jwt 实践以及与session对比](https://juejin.im/post/5b532492e51d455d6825c0cc#heading-2)
@@ -28,7 +34,7 @@
 - [避免React Context导致的重复渲染](https://zhuanlan.zhihu.com/p/50336226)
 - [How to fetch data with React Hooks?](https://www.robinwieruch.de/react-hooks-fetch-data)
 - [webpack4 webpack-dev-server react-router 二级路由对应 js路径问题](https://segmentfault.com/q/1010000020252715/a-1020000020252859)
-- [](https://medium.com/%E6%89%8B%E5%AF%AB%E7%AD%86%E8%A8%98/virtualize-long-list-with-react-window-95bac3673a91)
+- [react-window](https://medium.com/%E6%89%8B%E5%AF%AB%E7%AD%86%E8%A8%98/virtualize-long-list-with-react-window-95bac3673a91)
 
 ## bug
 - [antd menu item](https://github.com/ant-design/ant-design/issues/15724)
