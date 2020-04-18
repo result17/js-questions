@@ -1,6 +1,6 @@
 ## Docs
-js-question是一个基于React，Koa，jwt和Antd的js题目后台管理系统。它有动态路由，权限验证等功能，为不同用户提供不同的功能模块和路由，提供了上传题目，浏览题目和编辑题目（todo）等功能。页面包含有注册，登录，404，动态挂载组件的过度页面。
-后端数据库使用MySQL 8.0，封装了数据库操作类，直接存储JSON。用户验证使用jwt token，对接口进行验证。
+js-question是一个基于React，Koa，typescript，和Antd的js题目后台管理系统。它有动态路由，权限验证等功能，为不同用户提供不同的功能模块和路由，提供了上传题目，浏览题目和编辑题目（todo）等功能。页面包含有注册，登录，404，动态挂载组件的过度页面。<br>
+后端数据库使用MySQL 8.0，封装了数据库操作类，直接存储JSON字符串。用户验证使用jwt token，对接口进行验证，使用@hapi/Joi对用户上传的json文件进行格式验证。<br>
 欢迎来提交题目或者给我提issue。
 
 ### thanks
@@ -18,12 +18,11 @@ js-question是一个基于React，Koa，jwt和Antd的js题目后台管理系统�
 - 未做用户名unique处理。
 - 将react-router-dom升级至V6。
 - 重写路由渲染通用method。
-- 侧边栏虽路由状态变化。
-- 后端对于上传文件file type验证。
+- 侧边栏随路由状态变化。
 - 将后端json校验方式改为json schema。
 - 后端检验风格改为面向对象。
 - React组件性能优化（AuthProvider及其子组件重新渲染问题）。
-- 优化题目的数据结构。
+- 优化题目的数据结构（from array to linked list）。
 - upload图标显示错误。
 - 后端接口role认证（中间件传递信息ctx）。
 - 数据加载状态显示及错误展示。
