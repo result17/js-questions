@@ -60,9 +60,6 @@ interface TitleProps {
 interface QuestionOptionsProps<T> {
   itemIdx: number,
   options: T[],
-  chosen: boolean,
-  clickBtnIdx: number
-  dispatch: Function
 }
 
 interface QuestionCodeProps {
@@ -70,8 +67,8 @@ interface QuestionCodeProps {
 }
 
 interface QuestionExplanationProps {
+  itemIdx: number,
   text: string,
-  chosen: boolean
 }
 
 type ListState = QuestionItemState[]

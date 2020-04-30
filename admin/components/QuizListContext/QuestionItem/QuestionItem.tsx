@@ -1,21 +1,15 @@
-import React, { FC, useReducer } from 'react'
-import { QuestionItemProps, QuestionItemState } from '../types'
+import React, { FC } from 'react'
+import { QuestionItemProps } from '../types'
 import QuestionTitle from '../QuestionTitle/QuestionTitle'
 import QuestionCode from '../QuestionCode/QuestionCode'
 import QuestionOptions from '../QuestionOptions/QuestionOptions'
 import QuestionExplanation from '../QuestionExplanation/QuestionExplanation'
-import questionReducer from '../reducer'
+
 import { Divider } from 'antd'
 
 import './QuestionItem.css'
 
-const defaultState: QuestionItemState = {
-  hasChosen: false,
-  clickBtnIdx: -1,
-}
-
 const QuestionItem: FC<QuestionItemProps> = (props: QuestionItemProps) => {
-  const [state, dispatch] = useReducer(questionReducer, defaultState)
 
   return (
     <div 
@@ -32,12 +26,9 @@ const QuestionItem: FC<QuestionItemProps> = (props: QuestionItemProps) => {
       <QuestionOptions
         itemIdx={ props.itemIdx } 
         options={ props.data.options }
-        chosen={ state.hasChosen }
-        clickBtnIdx={ state.clickBtnIdx }
-        dispatch={ dispatch }
       ></QuestionOptions>
-      <QuestionExplanation 
-        chosen={ state.hasChosen }
+      <QuestionExplanation
+        itemIdx={ props.itemIdx }  
         text={ props.data.explanation }
       ></QuestionExplanation>
       <Divider className="divider-wrapper"/>

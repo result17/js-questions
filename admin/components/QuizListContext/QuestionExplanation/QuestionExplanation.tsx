@@ -1,11 +1,13 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useState, useContext} from 'react'
 import { Collapse } from 'antd'
 import Markdown from 'markdown-to-jsx'
 import { QuestionExplanationProps } from '../types'
+import { ListContext } from '../QuizListContext'
 
 import './QuestionExplanation.css'
 
 const QuestionExplanation: FC<QuestionExplanationProps> = (props: QuestionExplanationProps) => {
+  const listContext = useContext(ListContext)
   const [state, setState] = useState(true)
    
   // 用来回答后展开
@@ -16,14 +18,14 @@ const QuestionExplanation: FC<QuestionExplanationProps> = (props: QuestionExplan
   return (
     <div className="exp-wrapper">
       <Collapse 
-        activeKey={props.chosen && state ? "explanation" : ""}
+        activeKey={ listContext.state[props.itemIdx].chosen && state ? "explanation" : "" }
         onChange={ handleChange }
       >
         <Collapse.Panel
           className="panel-wrapper" 
           header="解释" 
           key="explanation" 
-          disabled={ !props.chosen }
+          disabled={ !listContext.state[props.itemIdx].chosen }
         >
           <Markdown>{ props.text }</Markdown>
         </Collapse.Panel>

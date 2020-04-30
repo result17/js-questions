@@ -36,6 +36,7 @@ const QuizListContext: FC<IContextProps> = (props: IContextProps) => {
     })
   }, [data])
   
+  
   return (
     <div className="list-wrapper">
       {
@@ -59,4 +60,4 @@ const QuizListContext: FC<IContextProps> = (props: IContextProps) => {
   )
 }
 
-export { QuizListContext } 
+export { QuizListContext, ListContext } 
