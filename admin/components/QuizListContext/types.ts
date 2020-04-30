@@ -23,6 +23,7 @@ interface QuestionContextRes {
 }
 
 interface QuestionItemProps {
+  itemIdx: number,
   data: QuestionContext,
   style: React.CSSProperties,
 }
@@ -37,6 +38,7 @@ enum ItemAction {
 }
 
 interface QuestionItemAction {
+  itemIdx: number,
   type: ItemAction.CHOOSE,
   idx: number,
 }
@@ -56,6 +58,7 @@ interface TitleProps {
 }
 
 interface QuestionOptionsProps<T> {
+  itemIdx: number,
   options: T[],
   chosen: boolean,
   clickBtnIdx: number
@@ -71,6 +74,17 @@ interface QuestionExplanationProps {
   chosen: boolean
 }
 
+type ListState = QuestionItemState[]
+
+enum ListAction {
+  INIT = 'INIT',
+}
+
+interface QuestionListAction {
+  type: ListAction.INIT,
+  questionsNum: number
+}
+
 export { 
   QuestionContext, 
   QuestionOption, 
@@ -83,5 +97,8 @@ export {
   TitleProps,  
   QuestionOptionsProps, 
   QuestionCodeProps, 
-  QuestionExplanationProps 
+  QuestionExplanationProps,
+  ListState,
+  ListAction,
+  QuestionListAction
 }

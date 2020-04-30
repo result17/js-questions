@@ -14,6 +14,7 @@ const QuestionOptions: FC<QuestionOptionsProps<QuestionOption>> = (props: Questi
           const handleClick = (e: React.MouseEvent) => {
             if (!props.chosen) {
               const action: QuestionItemAction = {
+                itemIdx: props.itemIdx,
                 type: ItemAction.CHOOSE,
                 idx: idx
               }

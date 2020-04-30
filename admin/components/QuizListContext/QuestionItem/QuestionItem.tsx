@@ -29,7 +29,8 @@ const QuestionItem: FC<QuestionItemProps> = (props: QuestionItemProps) => {
       <QuestionCode 
         code={ props.data.code }
       ></QuestionCode>
-      <QuestionOptions 
+      <QuestionOptions
+        itemIdx={ props.itemIdx } 
         options={ props.data.options }
         chosen={ state.hasChosen }
         clickBtnIdx={ state.clickBtnIdx }
